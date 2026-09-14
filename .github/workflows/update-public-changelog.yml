@@ -1,0 +1,134 @@
+name: Update public changelog
+
+on:
+  repository_dispatch:
+    types: [lichai_release_published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lichai-public-changelog
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.event_name == 'repository_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout LichAI-Public
+        uses: actions/checkout@v4
+
+      - name: Update platform notes and combined changelog
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import os
+          from datetime import datetime
+          from pathlib import Path
+
+          config = {
+              "android": {
+                  "title": "📱 Android",
+                  "file": "release-notes/android.md",
+                  "links": "[Tải Android](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Android.apk)",
+              },
+              "tv": {
+                  "title": "📺 Android TV",
+                  "file": "release-notes/tv.md",
+                  "links": "[Tải Android TV](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.TV.apk)",
+              },
+              "desktop": {
+                  "title": "🖥️ Windows",
+                  "file": "release-notes/desktop.md",
+                  "links": "[Tải EXE](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Desktop.exe) · [Tải MSI](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Desktop.msi)",
+              },
+              "ios": {
+                  "title": "🍎 iOS",
+                  "file": "release-notes/ios.md",
+                  "links": "[Tải IPA](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.iOS.ipa)",
+              },
+          }
+
+          with open(os.environ["GITHUB_EVENT_PATH"], encoding="utf-8") as source:
+              payload = json.load(source).get("client_payload", {})
+
+          platform = str(payload.get("platform", "")).strip().lower()
+          version = str(payload.get("version", "")).strip()
+          notes = str(payload.get("notes", "")).strip()
+          published_at = str(payload.get("published_at", "")).strip()
+
+          if platform not in config:
+              raise SystemExit(f"Unsupported platform: {platform!r}")
+          if not version or len(version) > 50:
+              raise SystemExit("Invalid or missing version")
+          if not notes or len(notes) > 30000:
+              raise SystemExit("Invalid or missing changelog notes")
+
+          try:
+              display_date = datetime.strptime(published_at, "%Y-%m-%d").strftime("%d/%m/%Y")
+          except ValueError as exc:
+              raise SystemExit("published_at must use YYYY-MM-DD") from exc
+
+          def write_crlf(path, content):
+              Path(path).parent.mkdir(parents=True, exist_ok=True)
+              normalized = content.replace("\r\n", "\n").replace("\r", "\n")
+              with open(path, "w", encoding="utf-8", newline="\r\n") as target:
+                  target.write(normalized.rstrip() + "\n")
+
+          item = config[platform]
+          section = (
+              f"### {item['title']} · {version}\n\n"
+              f"Cập nhật: {display_date}\n\n"
+              f"{notes}\n\n"
+              f"{item['links']}\n"
+          )
+          write_crlf(item["file"], section)
+
+          header = (
+              "# Nhật ký cập nhật Lịch AI\n\n"
+              "Đây là thông tin của phiên bản mới nhất trên từng nền tảng. "
+              "Bộ cài được tự động cập nhật sau khi quy trình build và kiểm tra hoàn tất; "
+              "tên file và đường dẫn tải xuống luôn được giữ cố định.\n\n"
+          )
+          sections = []
+          for key in ("android", "tv", "desktop", "ios"):
+              path = Path(config[key]["file"])
+              if path.exists():
+                  sections.append(path.read_text(encoding="utf-8").strip())
+
+          footer = (
+              "\n\n---\n\n"
+              "🌐 [Trang tải xuống chính thức](https://lich.ai.vn/download)\n\n"
+              "> Repository này chỉ chứa bộ cài đã phát hành, không chứa mã nguồn ứng dụng.\n"
+          )
+          write_crlf("CHANGELOG.md", header + "\n\n".join(sections) + footer)
+          PY
+
+      - name: Commit public changelog
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md release-notes
+          if git diff --cached --quiet; then
+            echo "Changelog is already current"
+          else
+            git commit -m "Cập nhật changelog tự động"
+            git push
+          fi
+
+      - name: Update fixed public release notes
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release edit LichAI-Public \
+            --repo nvhiepbk/LichAI-Public \
+            --title "Lịch AI – Bộ cài chính thức mới nhất" \
+            --notes-file CHANGELOG.md
