@@ -12,13 +12,14 @@ Cập nhật: 14/09/2026
 
 [Tải Android](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Android.apk)
 
-### 📺 Android TV · 1.2.1
+### 📺 Android TV · 1.2.2
 
 Cập nhật: 14/09/2026
 
-- Bổ sung kiểm tra phiên bản mới trực tiếp trên TV.
-- Hỗ trợ tải bản cập nhật bằng liên kết trực tiếp hoặc mã Downloader.
-- Cải thiện thông báo khi máy chủ cập nhật chưa phản hồi.
+- Hiển thị tên ngày lễ và sự kiện của ngày đang chọn trên màn hình lịch TV.
+- Phân biệt rõ sự kiện Âm lịch và Dương lịch.
+- Bổ sung sự kiện gần nhất và số ngày đếm ngược.
+- Không lặp ngày lễ âm lịch trong tháng nhuận.
 
 [Tải Android TV](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.TV.apk)
 
