@@ -14,7 +14,7 @@ Cập nhật: 14/09/2026
 
 ### 📺 Android TV · 1.3.0
 
-Cập nhật: 17/09/2026
+Cập nhật: 21/09/2026
 
 # TV 1.3.0 — 2026-09-17
 
@@ -31,6 +31,14 @@ Cập nhật: 17/09/2026
 - Phân biệt rõ sự kiện Âm lịch và Dương lịch.
 - Bổ sung sự kiện gần nhất và số ngày đếm ngược.
 - Không lặp ngày lễ âm lịch trong tháng nhuận.
+
+
+# TV Typography — 2026-09-21
+
+- Tách hệ typography của bảng thông tin ngày bên trái khỏi typography của lưới lịch tháng.
+- Tăng nhẹ cỡ chữ và line-height riêng cho bảng thông tin TV.
+- Bỏ giới hạn line count/line-height nén đối với giờ hoàng đạo, hướng tốt và sự kiện; nội dung dài được tự xuống dòng.
+- Giữ nguyên hệ cỡ chữ và bố cục của lưới lịch tháng.
 
 [Tải Android TV](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.TV.apk)
 
