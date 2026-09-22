@@ -12,9 +12,9 @@ Cập nhật: 14/09/2026
 
 [Tải Android](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Android.apk)
 
-### 📺 Android TV · 1.3.0
+### 📺 Android TV · 1.3.1
 
-Cập nhật: 21/09/2026
+Cập nhật: 22/09/2026
 
 # TV 1.3.0 — 2026-09-17
 
@@ -39,6 +39,12 @@ Cập nhật: 21/09/2026
 - Tăng nhẹ cỡ chữ và line-height riêng cho bảng thông tin TV.
 - Bỏ giới hạn line count/line-height nén đối với giờ hoàng đạo, hướng tốt và sự kiện; nội dung dài được tự xuống dòng.
 - Giữ nguyên hệ cỡ chữ và bố cục của lưới lịch tháng.
+
+
+# TV 1.3.1 — 2026-09-22
+
+- Tăng thêm một cỡ chữ riêng cho khung thông tin/diễn giải ngày; giữ nguyên typography của lưới tháng.
+- Nâng versionCode 8 / versionName TV 1.3.1 để cài đè bản 1.3.0 và dùng cơ chế kiểm tra cập nhật hiện có.
 
 [Tải Android TV](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.TV.apk)
 
