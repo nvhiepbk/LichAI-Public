@@ -1,6 +1,14 @@
-### 📺 Android TV · 1.3.1
+### 📺 Android TV · 1.3.2
 
-Cập nhật: 22/09/2026
+Cập nhật: 23/09/2026
+
+# TV 1.3.2 — 2026-09-23
+
+- Tăng chiều cao hàng menu phía trên lịch tháng (nút ‹ Hôm nay › Cập nhật) để không bị che khi focus trên TV Box.
+- Tăng cỡ chữ khung thông tin ngày bên trái khoảng 2 cỡ; số Dương lịch và dòng Âm lịch nổi bật, lớn hơn (gần phong cách lịch ngày web).
+- Giữ nguyên typography và bố cục lưới lịch tháng.
+- versionCode 9 / versionName TV 1.3.2 — cài đè được bản 1.3.1 và cũ hơn.
+
 
 # TV 1.3.0 — 2026-09-17
 
