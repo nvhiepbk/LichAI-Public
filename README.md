@@ -37,6 +37,28 @@ Trang tải xuống cung cấp phiên bản mới nhất cho:
 
 * Windows, macOS và Linux: xem các file tương ứng trong Releases.
 
+### Tiện ích dịch tài liệu Windows Desktop
+
+Lịch AI cung cấp hai phần mềm dịch tài liệu độc lập cho **Windows x64**. Người dùng chỉ cần tải **một file EXE** tương ứng, không cần tải kèm JSON phiên bản hoặc cài đặt Python. Quá trình dịch cần kết nối Internet.
+
+#### Lịch AI Excel Translator
+
+- **Ứng dụng:** `LichAI-Excel-Translater.exe`
+- **Chức năng:** Dịch nội dung bảng tính Excel, hỗ trợ kiểm tra nội dung trước khi lưu, theo dõi tiến độ và giữ cấu trúc bảng tính trong phạm vi hỗ trợ.
+- **Phù hợp:** Bảng biểu, dữ liệu công việc, tài liệu Excel đa ngôn ngữ.
+- **Tải EXE:** [LichAI-Excel-Translater.exe](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Excel-Translater.exe)
+
+#### Lịch AI Word Translator
+
+- **Ứng dụng:** `LichAI-Word-Translator.exe`
+- **Phiên bản mục tiêu:** 1.0.1
+- **Chức năng:** Dịch tài liệu DOCX theo từng câu/dòng, xem trước Gốc → Dịch, theo dõi tiến độ và lưu để tiếp tục khi gián đoạn.
+- **Hai chế độ:** Dịch toàn văn; song ngữ theo trang (xen kẽ trang gốc và trang dịch).
+- **Bố cục:** Cố gắng giữ đoạn văn, bảng và định dạng; khi bản dịch tràn trang, phần mềm thử điều chỉnh cỡ chữ theo từng đoạn. Chế độ ghép trang sử dụng bộ phân trang Microsoft Word trên Windows và có thể báo lỗi với tài liệu phức tạp.
+- **Tải EXE:** [LichAI-Word-Translator.exe](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Word-Translator.exe)
+
+> **Lưu ý:** Các liên kết EXE chỉ tải được khi file tương ứng đã được xuất bản trong [Releases](https://github.com/nvhiepbk/LichAI-Public/releases). File JSON phiên bản được lưu trong Releases để phục vụ cập nhật tự động, **không cần tải về máy**. Trước khi dùng với tài liệu quan trọng, nên kiểm tra bản dịch và lưu bản sao của tệp gốc.
+
 ## Phiên bản mới nhất
 
 Phiên bản hiện tại: **x.x.x**
