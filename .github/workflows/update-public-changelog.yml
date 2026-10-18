@@ -46,6 +46,11 @@ jobs:
                   "file": "release-notes/desktop.md",
                   "links": "[Tải EXE](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Desktop.exe) · [Tải MSI](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Desktop.msi)",
               },
+              "studio": {
+                  "title": "🎬 Lịch AI Studio",
+                  "file": "release-notes/studio.md",
+                  "links": "[Giới thiệu Studio](https://lich.ai.vn/lich-ai-studio-tao-video-tu-anh) · [Hướng dẫn](https://lich.ai.vn/huong-dan-lich-ai-studio) · [Download](https://lich.ai.vn/download)",
+              },
               "ios": {
                   "title": "🍎 iOS",
                   "file": "release-notes/ios.md",
@@ -95,7 +100,7 @@ jobs:
               "tên file và đường dẫn tải xuống luôn được giữ cố định.\n\n"
           )
           sections = []
-          for key in ("android", "tv", "desktop", "ios"):
+          for key in ("android", "tv", "desktop", "ios", "studio"):
               path = Path(config[key]["file"])
               if path.exists():
                   sections.append(path.read_text(encoding="utf-8").strip())
@@ -103,7 +108,7 @@ jobs:
           footer = (
               "\n\n---\n\n"
               "🌐 [Trang tải xuống chính thức](https://lich.ai.vn/download)\n\n"
-              "> Repository này chỉ chứa bộ cài đã phát hành, không chứa mã nguồn ứng dụng.\n"
+              "> Repository phục vụ bộ cài và thông tin phát hành; Studio cung cấp gói nguồn GPL và giấy phép tương ứng trong Assets.\n"
           )
           write_crlf("CHANGELOG.md", header + "\n\n".join(sections) + footer)
           PY

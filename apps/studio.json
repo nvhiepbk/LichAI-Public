@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "studio",
+  "name": "Lịch AI Studio",
+  "version": "1.0.0",
+  "status": "preparing",
+  "info_url": "https://lich.ai.vn/lich-ai-studio-tao-video-tu-anh",
+  "guide_url": "https://lich.ai.vn/huong-dan-lich-ai-studio",
+  "windows": {
+    "release_status": "unavailable"
+  },
+  "android": {
+    "release_status": "unavailable",
+    "signed": false
+  }
+}

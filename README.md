@@ -96,3 +96,13 @@ Email hỗ trợ: `nvhiepbk@gmail.com`
 © Lịch AI — lich.ai.vn
 
 Các file phát hành trong repository này thuộc về dự án Lịch AI. Vui lòng xem điều khoản sử dụng của từng nền tảng trước khi cài đặt hoặc phân phối lại.
+
+<!-- studio:start -->
+## Lịch AI Studio — Đang chuẩn bị phát hành
+
+Tạo MP4 từ ảnh ngoại tuyến trên Windows và Android, có nhạc, chữ, watermark và chuyển cảnh ngẫu nhiên.
+
+[Giới thiệu](https://lich.ai.vn/lich-ai-studio-tao-video-tu-anh) · [Hướng dẫn](https://lich.ai.vn/huong-dan-lich-ai-studio) · [Trạng thái phiên bản](apps/studio.json)
+
+Nút tải được cập nhật sau khi có gói đã kiểm thử; Android chỉ nhận APK release đã ký. Studio có gói nguồn/giấy phép GPL tương ứng đi kèm bộ cài. Bản debug/unsigned không được gọi là bản chính thức.
+<!-- studio:end -->
