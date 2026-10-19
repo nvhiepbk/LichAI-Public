@@ -1,6 +1,10 @@
-### 🖥️ Windows · 0.6.0
+## Lịch AI Desktop 0.6.2 · 2026-10-19
 
-Cập nhật: 19/10/2026
+# 0.6.2 — Đồng bộ hệ thống phát hành
+
+- Đồng bộ phiên bản trong cấu hình Tauri, Rust và giao diện đóng gói.
+- Giao bộ cài EXE/MSI cùng run thành công cho bộ xác minh phát hành tập trung.
+- Giữ nguyên URL tải và cơ chế so sánh SemVer của ứng dụng.
 
 # 0.6.0 — 2026-09-23
 
@@ -18,4 +22,3 @@ Cập nhật: 19/10/2026
 - Cải thiện độ ổn định của ứng dụng Desktop.
 - Cập nhật API khay hệ thống Tauri và dọn các cảnh báo Rust không cần thiết.
 
-[Tải EXE](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Desktop.exe) · [Tải MSI](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Desktop.msi)
