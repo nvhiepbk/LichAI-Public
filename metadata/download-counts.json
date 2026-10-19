@@ -15,8 +15,8 @@
     },
     "desktop": {
       "historical": 5,
-      "current": 0,
-      "total": 5
+      "current": 1,
+      "total": 6
     },
     "excel-translator": {
       "historical": 2,
@@ -47,8 +47,8 @@
     },
     "LichAI.Desktop.exe": {
       "historical": 3,
-      "current": 0,
-      "total": 3
+      "current": 1,
+      "total": 4
     },
     "LichAI.Desktop.msi": {
       "historical": 2,
@@ -76,5 +76,5 @@
       "total": 3
     }
   },
-  "updated_at": "2026-10-19T12:38:36.513491Z"
+  "updated_at": "2026-10-19T16:38:48.964648Z"
 }
