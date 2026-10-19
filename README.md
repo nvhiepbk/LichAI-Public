@@ -98,7 +98,7 @@ Email hỗ trợ: `nvhiepbk@gmail.com`
 Các file phát hành trong repository này thuộc về dự án Lịch AI. Vui lòng xem điều khoản sử dụng của từng nền tảng trước khi cài đặt hoặc phân phối lại.
 
 <!-- studio:start -->
-## Lịch AI Studio 1.0.0
+## Lịch AI Studio 1.0.1
 
 [Giới thiệu](https://lich.ai.vn/lich-ai-studio-tao-video-tu-anh) · [Hướng dẫn](https://lich.ai.vn/huong-dan-lich-ai-studio)
 
