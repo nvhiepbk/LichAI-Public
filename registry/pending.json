@@ -1,0 +1,69 @@
+{
+  "application": {
+    "schema_version": 1,
+    "id": "android",
+    "name": "Lịch AI Android",
+    "description": "Lịch và nhắc việc trên điện thoại Android.",
+    "category": "Lịch và sáng tạo",
+    "logo_url": "https://lich.ai.vn/public-assets/app-icon.webp",
+    "source_repository": "nvhiepbk/LichAI-Android",
+    "workflow": "android-build.yml",
+    "artifact": "LichAI-Android-Release-APK",
+    "version_source": {
+      "kind": "gradle",
+      "path": "app/build.gradle.kts"
+    },
+    "changelog_path": "CHANGELOG.md",
+    "info_url": "https://lich.ai.vn/download",
+    "guide_url": "https://lich.ai.vn/download",
+    "channel": "stable",
+    "update_policy": "optional",
+    "visible": true,
+    "legacy_key": "android",
+    "installers": [
+      {
+        "platform": "android",
+        "format": "apk",
+        "asset": "LichAI.Android.apk",
+        "pattern": "app-release.apk",
+        "os_requirement": "Android 6+",
+        "signature_policy": "required",
+        "size_bytes": 3650862,
+        "sha256": "8d84dd1c70a61c980ca5e1138a18991677af2ebeee902962ed761875bd20c8a0",
+        "download_url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Android.apk",
+        "signature": {
+          "status": "verified",
+          "policy": "required",
+          "certificate_sha256": "2c83e0a40b18a8cd42562c371479513d37b836d12b10a52ee07f83d77b67b8c1"
+        }
+      }
+    ],
+    "version": "1.8.8",
+    "version_code": 18,
+    "release_status": "published",
+    "published_at": "2026-10-19",
+    "provenance": {
+      "run_id": 39231263035,
+      "run_attempt": 1,
+      "head_sha": "29da561e85ce34a01ba3f8f73b02865e462e6131",
+      "artifact_id": 12177290863,
+      "workflow": ".github/workflows/android-build.yml"
+    },
+    "changes": [
+      "- Hoàn thiện hiển thị sự kiện và ghi chú gần nhất trên Widget.",
+      "- Bổ sung các ngày lễ, sự kiện âm lịch quan trọng.",
+      "- Tối ưu kiểm tra và tải bản cập nhật qua đường dẫn cố định.",
+      "",
+      "",
+      "## Reminder Push — 2026-09-21",
+      "- Android requests notification permission once on first successful page load (Android 13+).",
+      "- Native FCM token can be rebound immediately after the web session is restored/logged in.",
+      "- Existing Firebase Messaging service and server-side reminder delivery remain unchanged.",
+      "",
+      "",
+      "## Android 1.8.8 — 2026-09-22",
+      "- Nâng versionCode 18 / versionName 1.8.8 để cài đè bản 1.8.7 và kích hoạt luồng kiểm tra cập nhật hiện có."
+    ]
+  },
+  "run_id": 39231263035
+}
