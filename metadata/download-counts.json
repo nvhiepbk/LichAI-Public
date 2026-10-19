@@ -30,8 +30,8 @@
     },
     "studio": {
       "historical": 5,
-      "current": 0,
-      "total": 5
+      "current": 1,
+      "total": 6
     }
   },
   "installers": {
@@ -72,9 +72,9 @@
     },
     "LichAI-Studio-Android.apk": {
       "historical": 3,
-      "current": 0,
-      "total": 3
+      "current": 1,
+      "total": 4
     }
   },
-  "updated_at": "2026-10-19T16:38:48.964648Z"
+  "updated_at": "2026-10-19T21:15:07.899188Z"
 }
