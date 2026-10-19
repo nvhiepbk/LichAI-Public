@@ -1,0 +1,23 @@
+{
+  "platform": "windows",
+  "format": "exe",
+  "asset": "LichAI-Excel-Translater.exe",
+  "pattern": "LichAI-Excel-Translater.exe",
+  "os_requirement": "Windows 10+",
+  "signature_policy": "record-unsigned",
+  "size_bytes": 21525280,
+  "sha256": "6d7d2bef6a59a7f63b749ee12a71b4d86de5bda014f263bc2667bc0286d5c07c",
+  "download_url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Excel-Translater.exe",
+  "signature": {
+    "status": "unsigned",
+    "policy": "record-unsigned"
+  },
+  "version": "1.0.4",
+  "release_status": "published",
+  "published_at": "2026-10-19",
+  "verified_head": "4be1d824876ba90085160cb5ae2ed6b1f772ed27",
+  "signed": false,
+  "signing_certificate_sha256": null,
+  "info_url": "https://lich.ai.vn/phan-mem-dich-excel-mien-phi",
+  "guide_url": "https://lich.ai.vn/phan-mem-dich-excel-mien-phi"
+}
