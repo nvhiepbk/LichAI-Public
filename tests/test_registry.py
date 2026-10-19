@@ -176,6 +176,21 @@ class RegistryTests(unittest.TestCase):
         with patch.object(r,'api',return_value={'merged':False}):
             with self.assertRaisesRegex(ValueError,'approved merged'):r.verify_studio('nvhiepbk/LichAI-Studio',{'verified_head':'a'*40},{'event':'pull_request','pull_requests':[{'number':1}]})
 
+    def test_studio_merged_pr_lookup_when_run_omits_prs(self):
+        head='a'*40
+        meta={'verified_head':head,'verified_run_id':2,'android':{'signed':True}}
+        run={'head_sha':head,'conclusion':'success','path':'.github/workflows/ci.yml','id':2}
+        pr={'merged':True,'base':{'ref':'main'},'head':{'sha':head}}
+        jobs=[{'name':name,'conclusion':'success'} for name in ('validate','windows','android','android-emulator')]
+        def lookup(path, key=None):
+            return [{'number':8}] if '/commits/' in path else jobs
+        with patch.object(r,'pages',side_effect=lookup),patch.object(r,'api',side_effect=[pr,run]):
+            r.verify_studio('nvhiepbk/LichAI-Studio',meta,{'event':'pull_request','pull_requests':[]})
+        pr['head']['sha']='b'*40
+        with patch.object(r,'pages',side_effect=lookup),patch.object(r,'api',return_value=pr):
+            with self.assertRaisesRegex(ValueError,'approved merged'):
+                r.verify_studio('nvhiepbk/LichAI-Studio',meta,{'event':'pull_request','pull_requests':[]})
+
     def test_concurrency_is_global_and_legacy_writers_retired(self):
         workflow=(ROOT/'.github/workflows/reconcile-registry.yml').read_text()
         self.assertIn('group: lichai-public-release-writer',workflow)
