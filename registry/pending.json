@@ -1,0 +1,75 @@
+{
+  "application": {
+    "schema_version": 1,
+    "id": "word-translator",
+    "name": "Lịch AI Word Translator",
+    "description": "Dịch Word DOCX, dịch toàn văn và song ngữ.",
+    "category": "Tiện ích",
+    "logo_url": "https://lich.ai.vn/public-assets/app-icon.webp",
+    "source_repository": "nvhiepbk/LichAI-Translator",
+    "workflow": "build-word-windows.yml",
+    "artifact": "LichAI-Word-Translator-Windows-x64",
+    "version_source": {
+      "kind": "text",
+      "path": "WORD_VERSION"
+    },
+    "changelog_path": "WORD_RELEASE_NOTES.md",
+    "info_url": "https://lich.ai.vn/phan-mem-dich-word-song-ngu",
+    "guide_url": "https://lich.ai.vn/phan-mem-dich-word-song-ngu",
+    "channel": "stable",
+    "update_policy": "optional",
+    "visible": true,
+    "legacy_key": null,
+    "installers": [
+      {
+        "platform": "windows",
+        "format": "exe",
+        "asset": "LichAI-Word-Translator.exe",
+        "pattern": "LichAI-Word-Translator.exe",
+        "os_requirement": "Windows 10+",
+        "signature_policy": "record-unsigned",
+        "size_bytes": 88842369,
+        "sha256": "46297215a43f020e9eb194332f3d5953147afb9c928c8b6ee8227aa69aeb2c80",
+        "download_url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Word-Translator.exe",
+        "signature": {
+          "status": "unsigned",
+          "policy": "record-unsigned"
+        }
+      }
+    ],
+    "version": "1.0.1",
+    "version_code": null,
+    "release_status": "published",
+    "published_at": "2026-10-19",
+    "provenance": {
+      "run_id": 39231220482,
+      "run_attempt": 1,
+      "head_sha": "4be1d824876ba90085160cb5ae2ed6b1f772ed27",
+      "artifact_id": 12177615327,
+      "workflow": ".github/workflows/build-word-windows.yml"
+    },
+    "changes": [
+      "# Lịch AI Word Translator",
+      "",
+      "## v1.0.1 — release candidate",
+      "",
+      "- Windows portable EXE for DOCX translation.",
+      "- Two modes: full-document translation and page-interleaved bilingual output (Microsoft Word required for the latter).",
+      "- Sentence-level translation log with one-line shortened previews.",
+      "- Pause/resume controls and per-sentence checkpoint file.",
+      "- Handles HTTP 429 by stopping rather than hammering the translation endpoint.",
+      "",
+      "### Requirements and caveats",
+      "",
+      "- Requires Internet; translation service may rate-limit requests.",
+      "- Page interleaving requires Microsoft Word installed on the user's Windows machine.",
+      "- Complex formatting, tables, headers/footers, and pagination must be reviewed manually.",
+      "- Sensitive documents may be sent to third-party translation endpoints; obtain appropriate authorization before use.",
+      "",
+      "### Publication gate",
+      "",
+      "Do not announce a public release until Windows CI, the downloadable EXE, and the real Word page-pairing acceptance test have passed. The Word release metadata is separate from the Excel translator's assets."
+    ]
+  },
+  "run_id": 39231220482
+}
