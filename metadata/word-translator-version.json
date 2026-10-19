@@ -1,0 +1,23 @@
+{
+  "platform": "windows",
+  "format": "exe",
+  "asset": "LichAI-Word-Translator.exe",
+  "pattern": "LichAI-Word-Translator.exe",
+  "os_requirement": "Windows 10+",
+  "signature_policy": "record-unsigned",
+  "size_bytes": 88842369,
+  "sha256": "46297215a43f020e9eb194332f3d5953147afb9c928c8b6ee8227aa69aeb2c80",
+  "download_url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Word-Translator.exe",
+  "signature": {
+    "status": "unsigned",
+    "policy": "record-unsigned"
+  },
+  "version": "1.0.1",
+  "release_status": "published",
+  "published_at": "2026-10-19",
+  "verified_head": "4be1d824876ba90085160cb5ae2ed6b1f772ed27",
+  "signed": false,
+  "signing_certificate_sha256": null,
+  "info_url": "https://lich.ai.vn/phan-mem-dich-word-song-ngu",
+  "guide_url": "https://lich.ai.vn/phan-mem-dich-word-song-ngu"
+}
