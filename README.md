@@ -103,5 +103,4 @@ Các file phát hành trong repository này thuộc về dự án Lịch AI. Vui
 [Giới thiệu](https://lich.ai.vn/lich-ai-studio-tao-video-tu-anh) · [Hướng dẫn](https://lich.ai.vn/huong-dan-lich-ai-studio)
 
 [Windows portable EXE](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Studio-Windows.exe) · [Android APK](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Studio-Android.apk)
-
 <!-- studio:end -->
