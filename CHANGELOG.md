@@ -92,7 +92,7 @@ Cập nhật: 23/09/2026
 
 Chưa phát hành bản IPA chính thức. Bản iOS sẽ được cập nhật sau khi hoàn thiện chứng chỉ ký Apple và provisioning profile.
 
-### 🎬 Lịch AI Studio · 1.0.0
+### 🎬 Lịch AI Studio · 1.0.1
 
 Cập nhật: 19/10/2026
 
