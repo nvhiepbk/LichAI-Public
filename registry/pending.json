@@ -1,0 +1,92 @@
+{
+  "application": {
+    "schema_version": 1,
+    "id": "desktop",
+    "name": "Lịch AI Desktop",
+    "description": "Lịch và nhắc việc trên Windows.",
+    "category": "Lịch và sáng tạo",
+    "logo_url": "https://lich.ai.vn/public-assets/app-icon.webp",
+    "source_repository": "nvhiepbk/LichAI-Desktop",
+    "workflow": "windows-build.yml",
+    "artifact": "LichAI-Desktop-Windows",
+    "version_source": {
+      "kind": "tauri",
+      "path": "src-tauri/tauri.conf.json"
+    },
+    "changelog_path": "CHANGELOG.md",
+    "info_url": "https://lich.ai.vn/download",
+    "guide_url": "https://lich.ai.vn/download",
+    "channel": "stable",
+    "update_policy": "optional",
+    "visible": true,
+    "legacy_key": "windows",
+    "installers": [
+      {
+        "platform": "windows",
+        "format": "exe",
+        "asset": "LichAI.Desktop.exe",
+        "pattern": "*.exe",
+        "os_requirement": "Windows 10+",
+        "signature_policy": "record-unsigned",
+        "size_bytes": 3399139,
+        "sha256": "b739c4c3a698428cf202bd04e6519c1fc8b5b9e436cac499e7ee75f353968187",
+        "download_url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Desktop.exe",
+        "signature": {
+          "status": "unsigned",
+          "policy": "record-unsigned"
+        }
+      },
+      {
+        "platform": "windows",
+        "format": "msi",
+        "asset": "LichAI.Desktop.msi",
+        "pattern": "*.msi",
+        "os_requirement": "Windows 10+",
+        "signature_policy": "record-unsigned",
+        "size_bytes": 4763648,
+        "sha256": "508b98262d5b6d816bcfac6c446b84f6c637ad2ce67bad7f883432999594539c",
+        "download_url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Desktop.msi",
+        "signature": {
+          "status": "unsigned",
+          "policy": "record-unsigned"
+        }
+      }
+    ],
+    "version": "0.6.2",
+    "version_code": null,
+    "release_status": "published",
+    "published_at": "2026-10-19",
+    "provenance": {
+      "run_id": 39240082165,
+      "run_attempt": 1,
+      "head_sha": "6eac48565695f5333f566545d5167acac31c8b96",
+      "artifact_id": 12180968314,
+      "workflow": ".github/workflows/windows-build.yml"
+    },
+    "changes": [
+      "# 0.6.2 — Đồng bộ hệ thống phát hành",
+      "",
+      "- Đồng bộ phiên bản trong cấu hình Tauri, Rust và giao diện đóng gói.",
+      "- Giao bộ cài EXE/MSI cùng run thành công cho bộ xác minh phát hành tập trung.",
+      "- Giữ nguyên URL tải và cơ chế so sánh SemVer của ứng dụng.",
+      "",
+      "# 0.6.0 — 2026-09-23",
+      "",
+      "- Giao diện click icon tray giống LịchAI TV: chia đôi (chi tiết ngày | lưới tháng).",
+      "- Đánh dấu ngày có sự kiện / văn khấn trên lưới; click ngày để xem chi tiết.",
+      "- Click sự kiện để đọc mô tả; click văn khấn để xem hướng dẫn chuẩn bị và bài khấn.",
+      "- Phóng to icon khay hệ thống (crop padding, tray-icon 256px).",
+      "- Cửa sổ lịch tháng 920×560; Cài đặt thu nhỏ gọn.",
+      "- Nâng version 0.6.0 / code 600.",
+      "",
+      "# 0.5.1",
+      "",
+      "- Hoàn thiện bộ cài Windows dạng EXE và MSI.",
+      "- Giữ đường dẫn tải xuống cố định sau mỗi lần build.",
+      "- Cải thiện độ ổn định của ứng dụng Desktop.",
+      "- Cập nhật API khay hệ thống Tauri và dọn các cảnh báo Rust không cần thiết.",
+      ""
+    ]
+  },
+  "run_id": 39240082165
+}
