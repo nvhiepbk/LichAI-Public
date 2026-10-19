@@ -239,6 +239,20 @@ def verify_studio(repo, publication, publication_run):
         raise ValueError('Unsigned Studio candidate')
 
 
+def keep_catalogue_page_links(old, new):
+    """A reviewed product page supersedes the source manifest's generic fallback.
+    Explicit product URLs in a new manifest still take precedence.
+    """
+    if not old or old.get('id') != new.get('id'):
+        return
+    fallback = 'https://lich.ai.vn/download'
+    for key in ('info_url', 'guide_url'):
+        prior = old.get(key, '')
+        if (new.get(key) == fallback and isinstance(prior, str) and prior != fallback
+                and re.fullmatch(r'https://lich\.ai\.vn/[a-z0-9][a-z0-9-]*(?:#[a-z0-9-]+)?', prior)):
+            new[key] = prior
+
+
 def check_transition(old, new):
     if not old:
         return
@@ -528,6 +542,7 @@ def main():
                     continue
             with tempfile.TemporaryDirectory() as directory:
                 new, folder = stage(aid, grant, run, Path(directory))
+                keep_catalogue_page_links(old, new)
                 check_transition(old, new)
                 if pending:
                     expected = {i['asset']: i['sha256'] for i in pending['application']['installers']}
