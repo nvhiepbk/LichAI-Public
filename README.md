@@ -104,5 +104,4 @@ Các file phát hành trong repository này thuộc về dự án Lịch AI. Vui
 
 [Windows portable EXE](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Studio-Windows.exe) · [Android APK](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Studio-Android.apk)
 
-[Nguồn và giấy phép](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Studio-Windows-source.zip)
 <!-- studio:end -->
