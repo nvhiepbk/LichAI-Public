@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "coverage_note": "Recorded GitHub asset counters. Retired IDs below come from the API snapshot captured before reconciliation run 39251705938; earlier deleted periods are not reconstructed.",
+  "assets": [
+    {
+      "asset_id": 655672069,
+      "name": "LichAI-Excel-Translater.exe",
+      "download_count": 2
+    },
+    {
+      "asset_id": 655672071,
+      "name": "LichAI-Studio-Android.apk",
+      "download_count": 3
+    },
+    {
+      "asset_id": 655672072,
+      "name": "LichAI.Android.apk",
+      "download_count": 2
+    },
+    {
+      "asset_id": 655672073,
+      "name": "LichAI-Word-Translator.exe",
+      "download_count": 2
+    },
+    {
+      "asset_id": 655672075,
+      "name": "LichAI-Studio-Windows.exe",
+      "download_count": 2
+    },
+    {
+      "asset_id": 655672110,
+      "name": "LichAI.TV.apk",
+      "download_count": 2
+    },
+    {
+      "asset_id": 655772081,
+      "name": "LichAI.Desktop.msi",
+      "download_count": 2
+    },
+    {
+      "asset_id": 655772083,
+      "name": "LichAI.Desktop.exe",
+      "download_count": 3
+    },
+    {
+      "asset_id": 656203118,
+      "name": "LichAI.Android.apk",
+      "download_count": 0
+    },
+    {
+      "asset_id": 656203460,
+      "name": "LichAI.TV.apk",
+      "download_count": 0
+    },
+    {
+      "asset_id": 656203828,
+      "name": "LichAI.Desktop.exe",
+      "download_count": 0
+    },
+    {
+      "asset_id": 656203893,
+      "name": "LichAI.Desktop.msi",
+      "download_count": 0
+    },
+    {
+      "asset_id": 656204286,
+      "name": "LichAI-Excel-Translater.exe",
+      "download_count": 0
+    },
+    {
+      "asset_id": 656204733,
+      "name": "LichAI-Word-Translator.exe",
+      "download_count": 0
+    },
+    {
+      "asset_id": 656205406,
+      "name": "LichAI-Studio-Windows.exe",
+      "download_count": 0
+    },
+    {
+      "asset_id": 656205549,
+      "name": "LichAI-Studio-Android.apk",
+      "download_count": 0
+    }
+  ]
+}

@@ -151,10 +151,12 @@ class RegistryTests(unittest.TestCase):
 
     def test_group_publish_failure_rolls_back_and_leaves_pending(self):
         app=manifest();old=copy.deepcopy(app);old['version']='0.9.0'
-        assets={i['asset']:{'name':i['asset'],'state':'uploaded','size':1,'digest':'sha256:'+'f'*64} for i in app['installers']}
+        assets={i['asset']:{'id':index+1,'download_count':8,'name':i['asset'],'state':'uploaded','size':1,'digest':'sha256:'+'f'*64} for index,i in enumerate(app['installers'])}
         calls=[]
         with tempfile.TemporaryDirectory() as d:
-            directory=Path(d);(directory/'registry').mkdir();folder=directory/'installers';folder.mkdir()
+            directory=Path(d);(directory/'registry').mkdir();(directory/'metadata').mkdir()
+            (directory/'registry/download-counts.json').write_text(json.dumps({'schema_version':1,'assets':[]}))
+            folder=directory/'installers';folder.mkdir()
             for i in app['installers']:(folder/i['asset']).write_bytes(b'data')
             def fake_gh(*args,**kwargs):
                 calls.append(args)
@@ -163,6 +165,7 @@ class RegistryTests(unittest.TestCase):
             with patch.object(r,'ROOT',directory),patch.object(r,'validate_registry'),patch.object(r,'commit_state'),patch.object(r,'release_assets',return_value=assets),patch.object(r,'gh',side_effect=fake_gh),patch.object(r,'verify_group',side_effect=ValueError('upload failed')):
                 with self.assertRaisesRegex(ValueError,'upload failed'):r.publish_group(app,folder,{'schema_version':1,'applications':[old]})
                 self.assertTrue((directory/'registry/pending.json').exists())
+                self.assertEqual(json.loads((directory/'metadata/download-counts.json').read_text())['applications'][app['id']]['total'],16)
                 self.assertFalse((directory/'registry/applications.json').exists())
                 self.assertEqual(len([c for c in calls if c[:2]==('release','upload')]),4)
 
@@ -225,7 +228,9 @@ class RegistryTests(unittest.TestCase):
         other['installers']=[dict(other['installers'][0],asset='Other.exe',download_url=r.BASE+'Other.exe')]
         original=copy.deepcopy(other)
         with tempfile.TemporaryDirectory() as d:
-            directory=Path(d);(directory/'registry').mkdir();folder=directory/'installers';folder.mkdir()
+            directory=Path(d);(directory/'registry').mkdir();(directory/'metadata').mkdir()
+            (directory/'registry/download-counts.json').write_text(json.dumps({'schema_version':1,'assets':[]}))
+            folder=directory/'installers';folder.mkdir()
             registry={'schema_version':1,'applications':[other]}
             with patch.object(r,'ROOT',directory),patch.object(r,'validate_registry'),patch.object(r,'commit_state'),patch.object(r,'release_assets',return_value={}),patch.object(r,'gh'),patch.object(r,'verify_group') as verify,patch.object(r,'write_projection') as project:
                 r.publish_group(app,folder,registry)

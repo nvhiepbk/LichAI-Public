@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "repository": "nvhiepbk/LichAI-Public",
+  "release_tag": "LichAI-Public",
+  "applications": {
+    "android": {
+      "historical": 2,
+      "current": 0,
+      "total": 2
+    },
+    "tv": {
+      "historical": 2,
+      "current": 0,
+      "total": 2
+    },
+    "desktop": {
+      "historical": 5,
+      "current": 0,
+      "total": 5
+    },
+    "excel-translator": {
+      "historical": 2,
+      "current": 0,
+      "total": 2
+    },
+    "word-translator": {
+      "historical": 2,
+      "current": 0,
+      "total": 2
+    },
+    "studio": {
+      "historical": 5,
+      "current": 0,
+      "total": 5
+    }
+  },
+  "installers": {
+    "LichAI.Android.apk": {
+      "historical": 2,
+      "current": 0,
+      "total": 2
+    },
+    "LichAI.TV.apk": {
+      "historical": 2,
+      "current": 0,
+      "total": 2
+    },
+    "LichAI.Desktop.exe": {
+      "historical": 3,
+      "current": 0,
+      "total": 3
+    },
+    "LichAI.Desktop.msi": {
+      "historical": 2,
+      "current": 0,
+      "total": 2
+    },
+    "LichAI-Excel-Translater.exe": {
+      "historical": 2,
+      "current": 0,
+      "total": 2
+    },
+    "LichAI-Word-Translator.exe": {
+      "historical": 2,
+      "current": 0,
+      "total": 2
+    },
+    "LichAI-Studio-Windows.exe": {
+      "historical": 2,
+      "current": 0,
+      "total": 2
+    },
+    "LichAI-Studio-Android.apk": {
+      "historical": 3,
+      "current": 0,
+      "total": 3
+    }
+  },
+  "updated_at": "2026-10-19T12:38:36.513491Z"
+}

@@ -424,6 +424,10 @@ def publish_group(new, folder, registry):
     dump(ROOT / 'registry/pending.json', {'application': new, 'run_id': new['provenance']['run_id']})
     commit_state('Record pending verified release transaction ' + new['id'])
     assets = release_assets()
+    # Save the old asset IDs/counters durably before --clobber starts a new period.
+    from download_counts import record
+    record(ROOT, list(assets.values()), registry)
+    commit_state('Preserve download counts before replacing ' + new['id'])
     backups = folder.parent / 'backups'
     backups.mkdir(exist_ok=True)
     changed = []
@@ -486,6 +490,10 @@ def main():
             raise ValueError('Missing assets or incomplete transaction; run reconcile in apply mode')
         print('All registered public assets match exact SHA-256 and size')
         return
+    if args.apply:
+        from download_counts import record
+        record(ROOT, list(release_assets().values()), registry)
+        commit_state('Sync cumulative application download counts')
     for aid, grant in policy['applications'].items():
         try:
             old = next((a for a in registry['applications'] if a['id'] == aid), None)
@@ -537,6 +545,9 @@ def main():
     if errors:
         raise SystemExit(1)
     if args.apply:
+        from download_counts import record
+        record(ROOT, list(release_assets().values()), registry)
+        commit_state('Sync cumulative application download counts')
         # Notes are derived from committed verified metadata and are safe to retry independently.
         gh('release', 'edit', TAG, '-R', PUBLIC, '--notes-file', ROOT / 'RELEASE-CATALOG.md')
 
