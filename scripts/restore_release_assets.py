@@ -28,7 +28,10 @@ SOURCES = [
 ]
 
 def gh(*args):
-    p = subprocess.run(["gh", *args], check=True, capture_output=True, text=True)
+    p = subprocess.run(["gh", *args], capture_output=True, text=True)
+    if p.returncode:
+        detail = p.stderr.strip() or p.stdout.strip()
+        raise RuntimeError(f"GitHub API/CLI error: {detail}")
     return p.stdout
 
 def api(endpoint):
