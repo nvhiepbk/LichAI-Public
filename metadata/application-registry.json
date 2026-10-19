@@ -28,7 +28,7 @@
           "format": "apk",
           "asset": "LichAI.Android.apk",
           "pattern": "app-release.apk",
-          "os_requirement": "Android 8+",
+          "os_requirement": "Android 6+",
           "signature_policy": "required",
           "download_url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Android.apk"
         }

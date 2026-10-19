@@ -108,7 +108,7 @@ Website lỗi mạng: không ghi file snapshot và giữ bản commit trước. 
 
 ## 7. Kiểm thử và nghiệm thu
 
-Đã chạy local: 27 tests Public, 10 tests catalogue website, 5 tests tương thích Studio website, 2 tests Studio verified-run; integration verify_download xác minh đủ 8 URL/nút/QR và mọi PNG hợp lệ; Python compile và YAML parse. Có dry-run bằng API/artifact giả lập kiểm tra exact run, không có lệnh ghi Release. Chưa chạy publish end-to-end bằng token production; không tạo app thử trên Public.
+Đã chạy local: 27 tests Public, 10 tests catalogue website, 5 tests tương thích Studio website, 6 tests Studio (verified-run và handoff); integration verify_download xác minh đủ 8 URL/nút/QR và mọi PNG hợp lệ; Python compile và YAML parse. Có dry-run bằng API/artifact giả lập kiểm tra exact run, không có lệnh ghi Release. Chưa chạy publish end-to-end bằng token production; không tạo app thử trên Public.
 
 | Tình huống yêu cầu | Kiểm tra |
 |---|---|
@@ -121,4 +121,16 @@ Website lỗi mạng: không ghi file snapshot và giữ bản commit trước. 
 | Recovery sau lỗi | Mock upload failure rollback cả group; pending exact run; recovery mismatch riêng group pending |
 | 8 URL cũ | API size/digest snapshot và HEAD 8/8 HTTP 200 |
 
-CI mới kiểm tra Public và website trên PR. Native Windows/Android/Flutter build của source chủ yếu chạy main hoặc Studio PR; không gọi lại workflow có quyền publish cũ chỉ để lấy dấu CI xanh. Sau source merge, nghiệm thu native build là bước bắt buộc trước apply.
+CI mới kiểm tra Public và website trên PR. Public checks đã success; website catalogue và Studio compatibility checks đã success. CI native/media/emulator Studio đang chạy; chưa kết luận pass. Native Windows/Android/Flutter build của source chủ yếu chạy main hoặc Studio PR; không gọi lại workflow có quyền publish cũ chỉ để lấy dấu CI xanh. Sau source merge, nghiệm thu native build là bước bắt buộc trước apply.
+
+## 8. Các Pull Request liên quan
+
+- [Public #4](https://github.com/nvhiepbk/LichAI-Public/pull/4): schema, coordinator, kiểm thử, audit và recovery.
+- [Android #4](https://github.com/nvhiepbk/LichAI-Android/pull/4): manifest và handoff; thêm Gradle release unit-test gate.
+- [TV #3](https://github.com/nvhiepbk/LichAI-TV/pull/3): manifest, signature verify và Gradle unit-test gate.
+- [Desktop #3](https://github.com/nvhiepbk/LichAI-Desktop/pull/3): 0.6.2, đồng bộ version, EXE/MSI và Rust test gate.
+- [Translator #3](https://github.com/nvhiepbk/LichAI-Translator/pull/3): hai manifest và loại bỏ Word version hardcode.
+- [Studio #8](https://github.com/nvhiepbk/LichAI-Studio/pull/8): approved artifact handoff, kiểm thử chống unsigned/tampering/version mismatch.
+- [Website #80 — Draft](https://github.com/nvhiepbk/Lich-AI/pull/80): UI động và snapshot sync. Phải thay snapshot pending bằng verified trước merge.
+
+Kiểm thử trình duyệt trực quan chưa thực hiện: Chromium không có sẵn; tải browser thử nghiệm bị lỗi archive trong môi trường này. Renderer integration và dữ liệu QR đã được kiểm tra offline. Nghiệm thu desktop/mobile bằng browser thật trước merge website.
