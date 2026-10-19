@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "id": "desktop",
+  "name": "Lịch AI Desktop",
+  "description": "Lịch và nhắc việc trên Windows.",
+  "category": "Lịch và sáng tạo",
+  "logo_url": "https://lich.ai.vn/public-assets/app-icon.webp",
+  "source_repository": "nvhiepbk/LichAI-Desktop",
+  "workflow": "windows-build.yml",
+  "artifact": "LichAI-Desktop-Windows",
+  "version_source": {
+    "kind": "tauri",
+    "path": "src-tauri/tauri.conf.json"
+  },
+  "changelog_path": "CHANGELOG.md",
+  "info_url": "https://lich.ai.vn/download",
+  "guide_url": "https://lich.ai.vn/download",
+  "channel": "stable",
+  "update_policy": "optional",
+  "visible": true,
+  "legacy_key": "windows",
+  "installers": [
+    {
+      "platform": "windows",
+      "format": "exe",
+      "asset": "LichAI.Desktop.exe",
+      "pattern": "*.exe",
+      "os_requirement": "Windows 10+",
+      "signature_policy": "record-unsigned"
+    },
+    {
+      "platform": "windows",
+      "format": "msi",
+      "asset": "LichAI.Desktop.msi",
+      "pattern": "*.msi",
+      "os_requirement": "Windows 10+",
+      "signature_policy": "record-unsigned"
+    }
+  ]
+}

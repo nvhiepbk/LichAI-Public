@@ -1,0 +1,42 @@
+[
+  {
+    "name": "LichAI-Excel-Translater.exe",
+    "http_status": 200,
+    "bytes": "21524781"
+  },
+  {
+    "name": "LichAI-Studio-Android.apk",
+    "http_status": 200,
+    "bytes": "13920272"
+  },
+  {
+    "name": "LichAI-Studio-Windows.exe",
+    "http_status": 200,
+    "bytes": "18030592"
+  },
+  {
+    "name": "LichAI-Word-Translator.exe",
+    "http_status": 200,
+    "bytes": "88842695"
+  },
+  {
+    "name": "LichAI.Android.apk",
+    "http_status": 200,
+    "bytes": "3650860"
+  },
+  {
+    "name": "LichAI.Desktop.exe",
+    "http_status": 200,
+    "bytes": "3399934"
+  },
+  {
+    "name": "LichAI.Desktop.msi",
+    "http_status": 200,
+    "bytes": "4763648"
+  },
+  {
+    "name": "LichAI.TV.apk",
+    "http_status": 200,
+    "bytes": "3761728"
+  }
+]

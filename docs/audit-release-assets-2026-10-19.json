@@ -1,0 +1,58 @@
+[
+  {
+    "name": "LichAI-Excel-Translater.exe",
+    "size": 21524781,
+    "digest": "sha256:b3562acc889427d2a010fd900cf571ced10d936ee841b9883f64eccc751630b9",
+    "url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Excel-Translater.exe",
+    "state": "uploaded"
+  },
+  {
+    "name": "LichAI-Studio-Android.apk",
+    "size": 13920272,
+    "digest": "sha256:ecf8d184001c178608064b38f213d036891a9a71a82866cbfd4ac3bfad64e7d3",
+    "url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Studio-Android.apk",
+    "state": "uploaded"
+  },
+  {
+    "name": "LichAI-Studio-Windows.exe",
+    "size": 18030592,
+    "digest": "sha256:79f4ed0c5ae55ed7de05efc8cfd6a754e02f037fb6122cfc09820aed1b15e37f",
+    "url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Studio-Windows.exe",
+    "state": "uploaded"
+  },
+  {
+    "name": "LichAI-Word-Translator.exe",
+    "size": 88842695,
+    "digest": "sha256:f515765bcb1e50a84ce78dd80b7394a9b95c1b058afb1406c40e52536552d0ea",
+    "url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Word-Translator.exe",
+    "state": "uploaded"
+  },
+  {
+    "name": "LichAI.Android.apk",
+    "size": 3650860,
+    "digest": "sha256:0172be37c3b9c1d3cdf16a7aef523436a997828270ea3504f095c3ad12f9922a",
+    "url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Android.apk",
+    "state": "uploaded"
+  },
+  {
+    "name": "LichAI.Desktop.exe",
+    "size": 3399934,
+    "digest": "sha256:7b752e7b863df9c107eeaecf6aad8849148ea132b3795780fbd17943a2e0c813",
+    "url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Desktop.exe",
+    "state": "uploaded"
+  },
+  {
+    "name": "LichAI.Desktop.msi",
+    "size": 4763648,
+    "digest": "sha256:d4b3e20e9cc2073e6663588d7327b232ab505242c3e395f1cc0a8b59a75367b5",
+    "url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.Desktop.msi",
+    "state": "uploaded"
+  },
+  {
+    "name": "LichAI.TV.apk",
+    "size": 3761728,
+    "digest": "sha256:2457659b7c39ba6fe90c35241ef78988da226339d7708718928f758551dd7039",
+    "url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.TV.apk",
+    "state": "uploaded"
+  }
+]

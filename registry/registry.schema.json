@@ -1,0 +1,307 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "applications"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "applications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schema_version",
+          "id",
+          "name",
+          "description",
+          "category",
+          "logo_url",
+          "source_repository",
+          "workflow",
+          "artifact",
+          "version_source",
+          "changelog_path",
+          "info_url",
+          "guide_url",
+          "channel",
+          "update_policy",
+          "visible",
+          "legacy_key",
+          "installers",
+          "version",
+          "release_status",
+          "published_at",
+          "changes"
+        ],
+        "properties": {
+          "schema_version": {
+            "const": 1
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "category": {
+            "type": "string",
+            "minLength": 1
+          },
+          "logo_url": {
+            "type": "string",
+            "pattern": "^https://"
+          },
+          "source_repository": {
+            "type": "string",
+            "pattern": "^nvhiepbk/[A-Za-z0-9_.-]+$"
+          },
+          "workflow": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+\\.yml$"
+          },
+          "artifact": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version_source": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "path"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "gradle",
+                  "tauri",
+                  "text",
+                  "studio"
+                ]
+              },
+              "path": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_./-]+$"
+              }
+            }
+          },
+          "changelog_path": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_./-]+$"
+          },
+          "info_url": {
+            "type": "string",
+            "pattern": "^https://"
+          },
+          "guide_url": {
+            "type": "string",
+            "pattern": "^https://"
+          },
+          "channel": {
+            "const": "stable"
+          },
+          "update_policy": {
+            "enum": [
+              "optional",
+              "required"
+            ]
+          },
+          "visible": {
+            "type": "boolean"
+          },
+          "legacy_key": {
+            "enum": [
+              "android",
+              "android_tv",
+              "windows",
+              null
+            ]
+          },
+          "installers": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "platform",
+                "format",
+                "asset",
+                "pattern",
+                "os_requirement",
+                "signature_policy"
+              ],
+              "properties": {
+                "platform": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]+$"
+                },
+                "format": {
+                  "enum": [
+                    "apk",
+                    "exe",
+                    "msi",
+                    "zip",
+                    "deb",
+                    "rpm",
+                    "pkg",
+                    "dmg",
+                    "AppImage"
+                  ]
+                },
+                "asset": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]+$"
+                },
+                "pattern": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.*-]+$"
+                },
+                "os_requirement": {
+                  "type": "string"
+                },
+                "signature_policy": {
+                  "enum": [
+                    "required",
+                    "record-unsigned"
+                  ]
+                },
+                "download_url": {
+                  "type": "string",
+                  "pattern": "^https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/"
+                },
+                "size_bytes": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "signature": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "policy"
+                  ],
+                  "properties": {
+                    "status": {
+                      "enum": [
+                        "unsigned",
+                        "verified"
+                      ]
+                    },
+                    "policy": {
+                      "enum": [
+                        "required",
+                        "record-unsigned"
+                      ]
+                    },
+                    "certificate_sha256": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$"
+          },
+          "version_code": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "release_status": {
+            "enum": [
+              "migration_pending",
+              "published"
+            ]
+          },
+          "published_at": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "changes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "verified_head": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "provenance": {
+            "type": "object",
+            "required": [
+              "run_id",
+              "run_attempt",
+              "head_sha",
+              "artifact_id",
+              "workflow"
+            ]
+          },
+          "downloader_code": {
+            "type": "string",
+            "pattern": "^[0-9]+$"
+          },
+          "description_long": {
+            "type": "string",
+            "maxLength": 20000
+          },
+          "build_workflow_url": {
+            "type": "string",
+            "pattern": "^https://github.com/"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "release_status": {
+                  "const": "published"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "provenance"
+              ],
+              "properties": {
+                "installers": {
+                  "items": {
+                    "required": [
+                      "download_url",
+                      "size_bytes",
+                      "sha256",
+                      "signature"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

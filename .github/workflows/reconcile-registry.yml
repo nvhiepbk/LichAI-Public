@@ -1,0 +1,75 @@
+name: Reconcile verified application releases
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: Publish verified installers (requires REGISTRY_ENABLED=true)
+        type: boolean
+        default: false
+  workflow_call:
+    inputs:
+      apply:
+        type: boolean
+        default: false
+    secrets:
+      RELEASE_SYNC_TOKEN:
+        required: true
+  repository_dispatch:
+    types: [lichai_registry_reconcile]
+permissions:
+  contents: write
+concurrency:
+  group: lichai-public-release-writer
+  cancel-in-progress: false
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+      - run: sdkmanager 'build-tools;36.0.0'
+      - run: python -m pip install -r requirements-release.txt
+      - name: Verify, reconcile and optionally publish
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_SYNC_TOKEN }}
+          ENABLED: ${{ vars.REGISTRY_ENABLED }}
+          APPLY: ${{ github.event_name != 'workflow_dispatch' || inputs.apply }}
+          APKSIGNER: ${{ env.ANDROID_HOME }}/build-tools/36.0.0/apksigner
+          AAPT: ${{ env.ANDROID_HOME }}/build-tools/36.0.0/aapt
+        run: |
+          set -euo pipefail
+          test -n "$GH_TOKEN" || { echo 'RELEASE_SYNC_TOKEN needs source Actions/Contents read and Public Contents write'; exit 1; }
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # checkout's repository-scoped token pushes only Public; GH_TOKEN reads source artifacts.
+          flags=()
+          if [[ "$ENABLED" == 'true' && "$APPLY" == 'true' ]]; then flags+=(--apply); fi
+          python scripts/release_registry.py "${flags[@]}"
+      - name: Save verification report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: registry-verification-${{ github.run_id }}
+          retention-days: 90
+          path: |
+            release-report.json
+            registry/pending.json
+      - name: Add report to run summary
+        if: always()
+        run: |
+          if test -f release-report.json; then cat release-report.json >> "$GITHUB_STEP_SUMMARY"; fi

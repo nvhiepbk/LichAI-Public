@@ -1,32 +1,11 @@
-name: Restore missing public installers
+name: Restore recorded public installers
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '17 3 * * *'
-
 permissions:
   contents: write
-
-concurrency:
-  group: lichai-public-fixed-installers
-  cancel-in-progress: false
-
 jobs:
-  restore:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Restore only missing installers from successful builds
-        env:
-          # Fine-grained PAT: Actions read on all five source repositories;
-          # Contents write on LichAI-Public. Never commit this token.
-          GH_TOKEN: ${{ secrets.PUBLIC_ARTIFACTS_TOKEN }}
-        run: |
-          if [ -z "$GH_TOKEN" ]; then
-            echo "::error::Configure PUBLIC_ARTIFACTS_TOKEN with source Actions:read and public Contents:write"
-            exit 1
-          fi
-          python3 scripts/restore_release_assets.py
+  reconcile:
+    uses: ./.github/workflows/reconcile-registry.yml
+    with:
+      apply: true
+    secrets: inherit

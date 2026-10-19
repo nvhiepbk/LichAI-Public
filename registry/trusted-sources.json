@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "applications": {
+    "android": {
+      "repository": "nvhiepbk/LichAI-Android",
+      "manifest_path": "release-manifests/android.json",
+      "workflows": [
+        "android-build.yml"
+      ],
+      "artifact": "LichAI-Android-Release-APK",
+      "assets": [
+        "LichAI.Android.apk"
+      ],
+      "legacy_key": "android",
+      "studio_approval": false
+    },
+    "tv": {
+      "repository": "nvhiepbk/LichAI-TV",
+      "manifest_path": "release-manifests/tv.json",
+      "workflows": [
+        "android-tv-build.yml"
+      ],
+      "artifact": "LichAI-TV-01-APK",
+      "assets": [
+        "LichAI.TV.apk"
+      ],
+      "legacy_key": "android_tv",
+      "studio_approval": false
+    },
+    "desktop": {
+      "repository": "nvhiepbk/LichAI-Desktop",
+      "manifest_path": "release-manifests/desktop.json",
+      "workflows": [
+        "windows-build.yml"
+      ],
+      "artifact": "LichAI-Desktop-Windows",
+      "assets": [
+        "LichAI.Desktop.exe",
+        "LichAI.Desktop.msi"
+      ],
+      "legacy_key": "windows",
+      "studio_approval": false
+    },
+    "excel-translator": {
+      "repository": "nvhiepbk/LichAI-Translator",
+      "manifest_path": "release-manifests/excel-translator.json",
+      "workflows": [
+        "build-windows.yml"
+      ],
+      "artifact": "LichAI-Excel-Translater-Windows-x64",
+      "assets": [
+        "LichAI-Excel-Translater.exe"
+      ],
+      "legacy_key": null,
+      "studio_approval": false
+    },
+    "word-translator": {
+      "repository": "nvhiepbk/LichAI-Translator",
+      "manifest_path": "release-manifests/word-translator.json",
+      "workflows": [
+        "build-word-windows.yml"
+      ],
+      "artifact": "LichAI-Word-Translator-Windows-x64",
+      "assets": [
+        "LichAI-Word-Translator.exe"
+      ],
+      "legacy_key": null,
+      "studio_approval": false
+    },
+    "studio": {
+      "repository": "nvhiepbk/LichAI-Studio",
+      "manifest_path": "release-manifests/studio.json",
+      "workflows": [
+        "ci.yml",
+        "publish-existing.yml"
+      ],
+      "artifact": "studio-publication",
+      "assets": [
+        "LichAI-Studio-Windows.exe",
+        "LichAI-Studio-Android.apk"
+      ],
+      "legacy_key": null,
+      "studio_approval": true
+    }
+  }
+}
