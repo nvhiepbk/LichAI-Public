@@ -4,25 +4,25 @@
   "name": "Lịch AI Studio",
   "version": "1.0.1",
   "published_at": "2026-10-19",
-  "verified_head": "20d3a811229e35e9fb0db286b9f7d98852744637",
+  "verified_head": "60ba8b15d97a2497292372d4d8f48dd0573dbe92",
   "windows": {
     "version": "1.0.1",
     "asset": "LichAI-Studio-Windows.exe",
-    "size_bytes": 18030080,
-    "sha256": "5891e870591b8a31ee4fa09f642a80caaa8917b8de6d3257ad1d110c8760b7e1",
+    "size_bytes": 18030592,
+    "sha256": "79f4ed0c5ae55ed7de05efc8cfd6a754e02f037fb6122cfc09820aed1b15e37f",
     "platform": "windows",
     "release_status": "published",
     "info_url": "https://lich.ai.vn/lich-ai-studio-tao-video-tu-anh",
     "guide_url": "https://lich.ai.vn/huong-dan-lich-ai-studio",
     "published_at": "2026-10-19",
-    "verified_head": "20d3a811229e35e9fb0db286b9f7d98852744637",
+    "verified_head": "60ba8b15d97a2497292372d4d8f48dd0573dbe92",
     "download_url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Studio-Windows.exe"
   },
   "android": {
     "version": "1.0.1",
     "asset": "LichAI-Studio-Android.apk",
     "size_bytes": 13920272,
-    "sha256": "eee3996f4834a0881905e11240227a78f8349797418f020f4137bedce24f74ef",
+    "sha256": "ecf8d184001c178608064b38f213d036891a9a71a82866cbfd4ac3bfad64e7d3",
     "platform": "android",
     "release_status": "published",
     "info_url": "https://lich.ai.vn/lich-ai-studio-tao-video-tu-anh",
@@ -30,13 +30,9 @@
     "signed": true,
     "signing_certificate_sha256": "534e95f9069a138e05e7fc27cb0c3f9f4c41ca51305235b8e5ecee64c3345469",
     "published_at": "2026-10-19",
-    "verified_head": "20d3a811229e35e9fb0db286b9f7d98852744637",
+    "verified_head": "60ba8b15d97a2497292372d4d8f48dd0573dbe92",
     "download_url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Studio-Android.apk"
   },
   "info_url": "https://lich.ai.vn/lich-ai-studio-tao-video-tu-anh",
-  "guide_url": "https://lich.ai.vn/huong-dan-lich-ai-studio",
-  "sources": [
-    "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Studio-Windows-source.zip",
-    "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Studio-Android-source.zip"
-  ]
+  "guide_url": "https://lich.ai.vn/huong-dan-lich-ai-studio"
 }
