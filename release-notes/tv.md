@@ -1,6 +1,4 @@
-### 📺 Android TV · 1.3.2
-
-Cập nhật: 23/09/2026
+## Lịch AI TV 1.3.2 · 2026-10-19
 
 # TV 1.3.2 — 2026-09-23
 
@@ -39,5 +37,3 @@ Cập nhật: 23/09/2026
 
 - Tăng thêm một cỡ chữ riêng cho khung thông tin/diễn giải ngày; giữ nguyên typography của lưới tháng.
 - Nâng versionCode 8 / versionName TV 1.3.1 để cài đè bản 1.3.0 và dùng cơ chế kiểm tra cập nhật hiện có.
-
-[Tải Android TV](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI.TV.apk)
