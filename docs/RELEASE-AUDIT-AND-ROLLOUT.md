@@ -71,7 +71,7 @@ Không đọc được danh sách, giá trị hay phạm vi thực tế của Gi
 
 | Nơi | Secret / variable | Quyền cần thiết |
 |---|---|---|
-| Public | RELEASE_SYNC_TOKEN | Source repositories: Contents read, Actions read; Public: Contents write để thay release assets. Fine-grained token chỉ các repo được duyệt. Không cần quyền Actions write hoặc administration |
+| Public | RELEASE_SYNC_TOKEN hoặc PUBLIC_ARTIFACTS_TOKEN hiện có | Source repositories: Contents read, Actions read; Studio: Pull requests read để xác minh PR đã merge; Public: Contents write để thay release assets. Fine-grained token chỉ các repo được duyệt. Không cần quyền Actions write hoặc administration |
 | Public | GITHUB_TOKEN mặc định | Contents write để commit registry/pending/adapters; workflow khai báo phạm vi này |
 | Public | REGISTRY_ENABLED | Mặc định chưa có/false = chỉ dry-run; true cho phép apply ở workflow reconciliation |
 | Lich-AI | GITHUB_TOKEN | Read Public API, Contents write với repository website |

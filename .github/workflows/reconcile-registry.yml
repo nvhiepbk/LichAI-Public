@@ -15,7 +15,9 @@ on:
         default: false
     secrets:
       RELEASE_SYNC_TOKEN:
-        required: true
+        required: false
+      PUBLIC_ARTIFACTS_TOKEN:
+        required: false
   repository_dispatch:
     types: [lichai_registry_reconcile]
 permissions:
@@ -30,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.event_name == 'workflow_dispatch' && !inputs.apply && github.ref || 'main' }}
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
@@ -46,14 +48,14 @@ jobs:
       - run: python -m pip install -r requirements-release.txt
       - name: Verify, reconcile and optionally publish
         env:
-          GH_TOKEN: ${{ secrets.RELEASE_SYNC_TOKEN }}
+          GH_TOKEN: ${{ secrets.RELEASE_SYNC_TOKEN || secrets.PUBLIC_ARTIFACTS_TOKEN }}
           ENABLED: ${{ vars.REGISTRY_ENABLED }}
           APPLY: ${{ github.event_name != 'workflow_dispatch' || inputs.apply }}
           APKSIGNER: ${{ env.ANDROID_HOME }}/build-tools/36.0.0/apksigner
           AAPT: ${{ env.ANDROID_HOME }}/build-tools/36.0.0/aapt
         run: |
           set -euo pipefail
-          test -n "$GH_TOKEN" || { echo 'RELEASE_SYNC_TOKEN needs source Actions/Contents read and Public Contents write'; exit 1; }
+          test -n "$GH_TOKEN" || { echo 'Set RELEASE_SYNC_TOKEN or existing PUBLIC_ARTIFACTS_TOKEN with source Actions/Contents read and Public Contents write'; exit 1; }
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           # checkout's repository-scoped token pushes only Public; GH_TOKEN reads source artifacts.

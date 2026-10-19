@@ -209,9 +209,17 @@ def verify_studio(repo, publication, publication_run):
     """Approval is a merged PR for the tested source, or a main-only manual publication run.
     The enclosing publication run is checked separately. Recheck all four CI jobs.
     """
+    head = publication['verified_head']
+    if not re.fullmatch('[0-9a-f]{40}', head):
+        raise ValueError('Invalid verified Studio source')
     if publication_run['event'] == 'pull_request':
         approved = False
-        for candidate in publication_run.get('pull_requests', []):
+        candidates = publication_run.get('pull_requests', [])
+        # GitHub can omit pull_requests after a source PR is merged. Resolve the
+        # exact tested commit, then independently recheck merge/base/head below.
+        if not candidates:
+            candidates = pages(f'repos/{repo}/commits/{head}/pulls')
+        for candidate in candidates:
             pr = api(f'repos/{repo}/pulls/{int(candidate["number"])}')
             if pr.get('merged') and pr['base']['ref'] == 'main' and pr['head']['sha'] == publication['verified_head']:
                 approved = True
