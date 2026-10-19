@@ -16,8 +16,8 @@
         "path": "app/build.gradle.kts"
       },
       "changelog_path": "CHANGELOG.md",
-      "info_url": "https://lich.ai.vn/download",
-      "guide_url": "https://lich.ai.vn/download",
+      "info_url": "https://lich.ai.vn/lich-ai-android",
+      "guide_url": "https://lich.ai.vn/lich-ai-android#huong-dan",
       "channel": "stable",
       "update_policy": "optional",
       "visible": true,
@@ -82,8 +82,8 @@
         "path": "app/build.gradle.kts"
       },
       "changelog_path": "CHANGELOG.md",
-      "info_url": "https://lich.ai.vn/download",
-      "guide_url": "https://lich.ai.vn/download",
+      "info_url": "https://lich.ai.vn/lich-ai-tv",
+      "guide_url": "https://lich.ai.vn/lich-ai-tv#huong-dan",
       "channel": "stable",
       "update_policy": "optional",
       "visible": true,
@@ -173,8 +173,8 @@
         "path": "src-tauri/tauri.conf.json"
       },
       "changelog_path": "CHANGELOG.md",
-      "info_url": "https://lich.ai.vn/download",
-      "guide_url": "https://lich.ai.vn/download",
+      "info_url": "https://lich.ai.vn/lich-ai-desktop",
+      "guide_url": "https://lich.ai.vn/lich-ai-desktop#huong-dan",
       "channel": "stable",
       "update_policy": "optional",
       "visible": true,
