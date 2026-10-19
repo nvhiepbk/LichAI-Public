@@ -92,8 +92,18 @@ Cập nhật: 23/09/2026
 
 Chưa phát hành bản IPA chính thức. Bản iOS sẽ được cập nhật sau khi hoàn thiện chứng chỉ ký Apple và provisioning profile.
 
+### 🎬 Lịch AI Studio · 1.0.0
+
+Cập nhật: 19/10/2026
+
+Lịch AI Studio: tạo video từ ảnh offline, giao diện compact/dọc, chuyển cảnh random, nhạc, chữ và watermark. Windows portable EXE một file; bản build có làm rối mã Dart. Android release đã ký.
+
+Nguồn GPL và notices tương ứng được cung cấp qua các gói *-source.zip. Làm rối mã không bảo đảm chống dịch ngược tuyệt đối. Windows chưa có chứng thư Authenticode.
+
+[Giới thiệu Studio](https://lich.ai.vn/lich-ai-studio-tao-video-tu-anh) · [Hướng dẫn](https://lich.ai.vn/huong-dan-lich-ai-studio) · [Download](https://lich.ai.vn/download)
+
 ---
 
 🌐 [Trang tải xuống chính thức](https://lich.ai.vn/download)
 
-> Repository này chỉ chứa bộ cài đã phát hành, không chứa mã nguồn ứng dụng.
+> Repository phục vụ bộ cài và thông tin phát hành; Studio cung cấp gói nguồn GPL và giấy phép tương ứng trong Assets.
