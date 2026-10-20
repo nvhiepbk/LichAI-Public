@@ -158,3 +158,12 @@ Mã nguồn GPL-3.0-or-later, FFmpeg/x264 có GPL; corresponding source và thô
 - Dock trong suốt, ít nhất 5 vị trí và tăng theo số cột drawer.
 - Giữ vùng trống để thêm nội dung hoặc mở cài đặt.
 
+## Lịch AI Launcher TV 0.2.0 · 2026-10-20
+
+# Lịch AI Launcher TV
+
+## 0.2.0
+
+- Android TV / TV Box launcher release with dedicated signed APK.
+- Separate package and release asset from Lịch AI TV calendar app.
+

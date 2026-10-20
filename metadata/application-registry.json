@@ -537,6 +537,65 @@
         "- Dock trong suốt, ít nhất 5 vị trí và tăng theo số cột drawer.",
         "- Giữ vùng trống để thêm nội dung hoặc mở cài đặt."
       ]
+    },
+    {
+      "schema_version": 1,
+      "id": "launcher-tv",
+      "name": "Lịch AI Launcher TV",
+      "description": "Màn hình chính dành cho Android TV và TV Box.",
+      "category": "Màn hình chính Android TV",
+      "logo_url": "https://lich.ai.vn/public-assets/app-icon.webp",
+      "source_repository": "nvhiepbk/LichAI-Launcher",
+      "workflow": "release-tv.yml",
+      "artifact": "launcher-tv-publication",
+      "version_source": {
+        "kind": "gradle",
+        "path": "app-tv/build.gradle.kts"
+      },
+      "changelog_path": "CHANGELOG-TV.md",
+      "info_url": "https://lich.ai.vn/download",
+      "guide_url": "https://lich.ai.vn/download",
+      "channel": "stable",
+      "update_policy": "optional",
+      "visible": true,
+      "legacy_key": null,
+      "installers": [
+        {
+          "platform": "android-tv",
+          "format": "apk",
+          "asset": "LichAI-Launcher-TV.apk",
+          "pattern": "LichAI-Launcher-TV.apk",
+          "os_requirement": "Android 8+",
+          "signature_policy": "required",
+          "size_bytes": 1030746,
+          "sha256": "018e93072f06f39e482c9a560cce9dcccf302e59aef1b81713fd1214d25a524a",
+          "download_url": "https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Launcher-TV.apk",
+          "signature": {
+            "status": "verified",
+            "policy": "required",
+            "certificate_sha256": "c9aa03b761075e580b2d9a90d169be514c601f058426097b37ad78322d9fe334"
+          }
+        }
+      ],
+      "version": "0.2.0",
+      "version_code": 2,
+      "release_status": "published",
+      "published_at": "2026-10-20",
+      "provenance": {
+        "run_id": 39406377234,
+        "run_attempt": 1,
+        "head_sha": "087b12588aa8fe0a8ae617e706a03bcbbc1746d6",
+        "artifact_id": 12257369460,
+        "workflow": ".github/workflows/release-tv.yml"
+      },
+      "changes": [
+        "# Lịch AI Launcher TV",
+        "",
+        "## 0.2.0",
+        "",
+        "- Android TV / TV Box launcher release with dedicated signed APK.",
+        "- Separate package and release asset from Lịch AI TV calendar app."
+      ]
     }
   ]
 }
