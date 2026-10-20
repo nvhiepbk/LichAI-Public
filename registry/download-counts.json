@@ -55,7 +55,7 @@
     {
       "asset_id": 656203828,
       "name": "LichAI.Desktop.exe",
-      "download_count": 1
+      "download_count": 2
     },
     {
       "asset_id": 656203893,
@@ -75,12 +75,12 @@
     {
       "asset_id": 656205406,
       "name": "LichAI-Studio-Windows.exe",
-      "download_count": 0
+      "download_count": 3
     },
     {
       "asset_id": 656205549,
       "name": "LichAI-Studio-Android.apk",
-      "download_count": 1
+      "download_count": 3
     }
   ]
 }
