@@ -28,11 +28,6 @@
       "current": 0,
       "total": 2
     },
-    "studio": {
-      "historical": 5,
-      "current": 6,
-      "total": 11
-    },
     "launcher-phone": {
       "historical": 0,
       "current": 0,
@@ -42,6 +37,11 @@
       "historical": 0,
       "current": 0,
       "total": 0
+    },
+    "studio": {
+      "historical": 11,
+      "current": 0,
+      "total": 11
     }
   },
   "installers": {
@@ -75,16 +75,6 @@
       "current": 0,
       "total": 2
     },
-    "LichAI-Studio-Windows.exe": {
-      "historical": 2,
-      "current": 3,
-      "total": 5
-    },
-    "LichAI-Studio-Android.apk": {
-      "historical": 3,
-      "current": 3,
-      "total": 6
-    },
     "LichAI-Launcher-Android.apk": {
       "historical": 0,
       "current": 0,
@@ -94,7 +84,17 @@
       "historical": 0,
       "current": 0,
       "total": 0
+    },
+    "LichAI-Studio-Windows.exe": {
+      "historical": 5,
+      "current": 0,
+      "total": 5
+    },
+    "LichAI-Studio-Android.apk": {
+      "historical": 6,
+      "current": 0,
+      "total": 6
     }
   },
-  "updated_at": "2026-10-20T11:36:44.223442Z"
+  "updated_at": "2026-10-20T12:20:51.453050Z"
 }
