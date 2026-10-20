@@ -4,9 +4,9 @@
 
 Repository **LichAI-Public** là nơi phát hành bộ cài chính thức của hệ sinh thái **Lịch AI**. Các ứng dụng sử dụng **một Release chung** mang tag `LichAI-Public`; tên tệp và URL tải xuống được giữ cố định khi cập nhật phiên bản.
 
-> **Đã có 8 bộ cài:** 2 APK cho Android/Android TV, 2 bộ cài Windows Desktop (EXE/MSI), 2 tiện ích dịch tài liệu Windows và 2 bộ cài Lịch AI Studio (Windows/Android). Đây là **8 tệp tải**, tương ứng với **6 nhóm ứng dụng/sản phẩm**.
+> Danh mục và trạng thái bộ cài được xác minh trong [registry/applications.json](registry/applications.json); mỗi ứng dụng giữ phiên bản, chữ ký và checksum riêng.
 
-## 📥 Tải nhanh — 8 bộ cài
+## 📥 Tải nhanh
 
 | Ứng dụng | Nền tảng | Tệp tải trực tiếp |
 |---|---|---|
@@ -18,6 +18,8 @@ Repository **LichAI-Public** là nơi phát hành bộ cài chính thức của 
 | **Lịch AI Word Translator** | Windows x64 | [⬇️ LichAI-Word-Translator.exe](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Word-Translator.exe) |
 | **Lịch AI Studio** | Windows | [⬇️ LichAI-Studio-Windows.exe](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Studio-Windows.exe) |
 | **Lịch AI Studio** | Android | [⬇️ LichAI-Studio-Android.apk](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Studio-Android.apk) |
+| **Lịch AI Launcher Android** | Màn hình chính Android 8+ | [⬇️ LichAI-Launcher-Android.apk](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Launcher-Android.apk) |
+| **Lịch AI Launcher TV** | Màn hình chính Android TV / TV Box 8+ | [⬇️ LichAI-Launcher-TV.apk](https://github.com/nvhiepbk/LichAI-Public/releases/download/LichAI-Public/LichAI-Launcher-TV.apk) |
 
 **Quan trọng:** Các link trên là link tải **bộ cài**, không phải mã nguồn. Không đổi tên asset hoặc tag nếu muốn website và ứng dụng tiếp tục dùng URL cũ.
 
@@ -77,13 +79,13 @@ Repository **LichAI-Public** là nơi phát hành bộ cài chính thức của 
 
 ## 🔄 Cơ chế phát hành và khôi phục tự động
 
-1. Các repository ứng dụng chạy workflow build, kiểm thử và đóng gói theo từng nền tảng.
-2. Workflow phát hành của ứng dụng đưa bộ cài được chấp thuận lên **cùng một Release** `LichAI-Public`, sử dụng tên tệp cố định và `--clobber` khi cập nhật. Studio có bước xác minh/phê duyệt trước khi phát hành.
-3. Workflow [Restore missing public installers](.github/workflows/restore-public-installers.yml) trong repository này kiểm tra tám tên tệp; nếu thiếu, workflow tìm Artifact **chưa hết hạn** thuộc bản build **thành công** và khôi phục bộ cài vào Release chung.
-4. Workflow khôi phục có thể chạy thủ công và được lên lịch hằng ngày. Nó **chỉ bổ sung tệp bị thiếu**, không tự nâng cấp một tệp đang tồn tại lên phiên bản mới.
-5. Workflow [Update public changelog](.github/workflows/update-public-changelog.yml) nhận sự kiện phát hành để cập nhật ghi chú thay đổi.
+1. Repository nguồn chạy build/kiểm thử và tạo artifact ứng viên; APK phải có chữ ký ổn định.
+2. [Coordinator Public](.github/workflows/reconcile-registry.yml) kiểm tra source đã được cho phép, đúng lượt chạy thành công, chữ ký, phiên bản, SHA-256 và kích thước trước khi xuất bản nhóm bộ cài vào Release chung.
+3. Registry và metadata chỉ được ghi sau khi xác minh bytes trên Public. Tám tên bộ cài ban đầu được giữ nguyên; các ứng dụng mới như Launcher có asset riêng.
+4. Chạy thủ công với `application=launcher-phone` hoặc `application=launcher-tv` để chỉ xét ứng dụng đó. Để trống thì xét toàn danh mục; giao dịch đang dở phải phục hồi trước khi phát hành nhóm khác. Không bỏ kiểm tra cùng phiên bản nhưng khác bytes.
+5. Website đồng bộ danh mục đã xác minh. Cập nhật danh mục trong git và triển khai trang SEO là hai bước riêng; kiểm tra cả hai trước khi thông báo trang tải đã cập nhật.
 
-**Quyền truy cập:** Workflow khôi phục cần secret `PUBLIC_ARTIFACTS_TOKEN` có quyền đọc Actions ở các repository nguồn và quyền ghi Contents tại `LichAI-Public`. Không đưa token, keystore hay mật khẩu vào mã nguồn.
+**Quyền truy cập:** Coordinator dùng `RELEASE_SYNC_TOKEN` hoặc `PUBLIC_ARTIFACTS_TOKEN` để đọc source artifacts và ghi Public; chế độ xuất bản yêu cầu `REGISTRY_ENABLED=true` và `apply=true`. Không đưa token, keystore hay mật khẩu vào mã nguồn.
 
 ## 🧾 Phiên bản, kiểm tra tệp và an toàn
 
@@ -100,7 +102,7 @@ Repository **LichAI-Public** là nơi phát hành bộ cài chính thức của 
 
 ## 🍎 iOS, macOS và Linux
 
-Repository có thể lưu thông tin kế hoạch phát hành cho các nền tảng khác. **Tám bộ cài được liệt kê ở trên hiện chỉ bao gồm Android, Android TV và Windows.** Không xem các nền tảng chưa có tệp phát hành là đã hỗ trợ tải trực tiếp.
+Repository có thể lưu thông tin kế hoạch phát hành cho các nền tảng khác. **Các bộ cài được xác minh hiện gồm Android, Android TV và Windows.** Không xem các nền tảng chưa có tệp phát hành là đã hỗ trợ tải trực tiếp.
 
 ## 📬 Hỗ trợ
 
