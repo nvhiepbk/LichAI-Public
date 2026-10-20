@@ -28,11 +28,6 @@
       "current": 0,
       "total": 2
     },
-    "launcher-phone": {
-      "historical": 0,
-      "current": 0,
-      "total": 0
-    },
     "launcher-tv": {
       "historical": 0,
       "current": 0,
@@ -42,6 +37,11 @@
       "historical": 11,
       "current": 0,
       "total": 11
+    },
+    "launcher-phone": {
+      "historical": 0,
+      "current": 0,
+      "total": 0
     }
   },
   "installers": {
@@ -75,11 +75,6 @@
       "current": 0,
       "total": 2
     },
-    "LichAI-Launcher-Android.apk": {
-      "historical": 0,
-      "current": 0,
-      "total": 0
-    },
     "LichAI-Launcher-TV.apk": {
       "historical": 0,
       "current": 0,
@@ -94,6 +89,11 @@
       "historical": 6,
       "current": 0,
       "total": 6
+    },
+    "LichAI-Launcher-Android.apk": {
+      "historical": 0,
+      "current": 0,
+      "total": 0
     }
   },
   "updated_at": "2026-10-20T12:20:51.453050Z"
