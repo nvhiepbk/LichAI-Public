@@ -37,6 +37,11 @@
       "historical": 0,
       "current": 0,
       "total": 0
+    },
+    "launcher-tv": {
+      "historical": 0,
+      "current": 0,
+      "total": 0
     }
   },
   "installers": {
@@ -84,7 +89,12 @@
       "historical": 0,
       "current": 0,
       "total": 0
+    },
+    "LichAI-Launcher-TV.apk": {
+      "historical": 0,
+      "current": 0,
+      "total": 0
     }
   },
-  "updated_at": "2026-10-20T10:04:58.179932Z"
+  "updated_at": "2026-10-20T11:36:44.223442Z"
 }
