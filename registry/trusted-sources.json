@@ -94,6 +94,19 @@
       ],
       "legacy_key": null,
       "studio_approval": false
+    },
+    "launcher-tv": {
+      "repository": "nvhiepbk/LichAI-Launcher",
+      "manifest_path": "release-manifests/launcher-tv.json",
+      "workflows": [
+        "release-tv.yml"
+      ],
+      "artifact": "launcher-tv-publication",
+      "assets": [
+        "LichAI-Launcher-TV.apk"
+      ],
+      "legacy_key": null,
+      "studio_approval": false
     }
   }
 }
