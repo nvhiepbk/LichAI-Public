@@ -77,13 +77,17 @@ class RegistryTests(unittest.TestCase):
             self.assertEqual([item['id'] for item in report['plan']], ['launcher-phone'])
             self.assertEqual(report['errors'], [])
 
-    def test_migration_schema_and_eight_fixed_names(self):
+    def test_migration_preserves_eight_fixed_names_and_allows_trusted_additions(self):
         data = json.loads((ROOT / 'registry/applications.json').read_text())
         r.validate_registry(data)
         r.validate_policy(self.policy)
-        self.assertEqual({i['asset'] for a in data['applications'] for i in a['installers']}, {
+        current = {i['asset'] for a in data['applications'] for i in a['installers']}
+        baseline = {
             'LichAI.Android.apk','LichAI.TV.apk','LichAI.Desktop.exe','LichAI.Desktop.msi',
-            'LichAI-Excel-Translater.exe','LichAI-Word-Translator.exe','LichAI-Studio-Windows.exe','LichAI-Studio-Android.apk'})
+            'LichAI-Excel-Translater.exe','LichAI-Word-Translator.exe','LichAI-Studio-Windows.exe','LichAI-Studio-Android.apk'}
+        approved = {name for grant in self.policy['applications'].values() for name in grant['assets']}
+        self.assertTrue(baseline <= current, 'Do not rename or remove the original eight installers')
+        self.assertTrue(current <= approved, 'Every registered installer must have an explicit source grant')
 
     def test_new_app_nine_windows(self):
         app = manifest('app-nine')
