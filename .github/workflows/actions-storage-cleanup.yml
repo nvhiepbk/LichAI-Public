@@ -1,0 +1,142 @@
+name: Manage Actions storage
+on:
+  schedule:
+    - cron: '23 20 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Preview deletions without applying them
+        type: boolean
+        default: true
+      prune_all_duplicates:
+        description: Prune all older duplicates now, retaining latest successful build sets
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths: ['.github/workflows/actions-storage-cleanup.yml']
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: actions-storage-maintenance
+  cancel-in-progress: false
+jobs:
+  retention:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Prune Actions history and artifacts safely
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+          PRUNE_ALL: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.prune_all_duplicates) }}
+        shell: bash
+        run: |
+          python3 - <<'PYTHON'
+          """Actions-only retention. Never edits repository contents, releases, caches or secrets."""
+          import os,json,time,urllib.request,urllib.error,re
+          from datetime import datetime,timezone,timedelta
+          
+          def stamp(value):
+              return datetime.fromisoformat(value.replace('Z','+00:00'))
+          
+          def plan(runs,artifacts,current_run,cutoff,prune_all=False):
+              completed=[r for r in runs if r.get('status')=='completed']
+              successes=sorted([r for r in completed if r.get('conclusion')=='success'],key=lambda r:r['created_at'],reverse=True)
+              by_id={r['id']:r for r in runs}
+              protected={int(current_run)}
+              latest_workflows=set()
+              for run in successes:
+                  key=run['workflow_id']
+                  if key not in latest_workflows:
+                      latest_workflows.add(key);protected.add(run['id'])
+              # Multiple deliverables can belong to different successful runs (e.g. Studio
+              # publication vs full Windows/Android CI). Preserve the latest of each type.
+              active=[a for a in artifacts if not a.get('expired')]
+              names={a['name'] for a in active}
+              obsolete=set()
+              if 'LichAI-TV-01-APK' in names: obsolete.add('LichAI-TV-01-debug')
+              if 'LichAI-Android-Release-APK' in names:obsolete.add('LichAI-Android-V1.0-Debug')
+              if 'LichAI-Word-Translator-Windows-x64' in names:obsolete.add('LichAI-Word-Translator-preview-Windows-x64')
+              latest_types=set()
+              for a in sorted(active,key=lambda x:x['created_at'],reverse=True):
+                  run_id=a.get('workflow_run',{}).get('id')
+                  run=by_id.get(run_id)
+                  if not run or run.get('conclusion')!='success' or a['name'] in obsolete:continue
+                  # Reports whose names contain a run ID represent one report type.
+                  kind=re.sub(r'-\d{8,}$','',a['name'])
+                  if kind not in latest_types:
+                      latest_types.add(kind);protected.add(run_id)
+              delete_runs=[]
+              for r in completed:
+                  if r['id'] in protected:continue
+                  if prune_all or stamp(r['created_at'])<cutoff:delete_runs.append(r)
+              deleted_run_ids={r['id'] for r in delete_runs}
+              # Deleting a workflow run also removes all its artifacts; do not double-delete.
+              delete_artifacts=[]
+              kept_artifacts=[]
+              for a in active:
+                  rid=a.get('workflow_run',{}).get('id')
+                  r=by_id.get(rid)
+                  if not r or r.get('status')!='completed':continue
+                  if rid in deleted_run_ids:continue
+                  if rid in protected:
+                      # Artifacts in a protected build form an atomic build set.
+                      kept_artifacts.append(a);continue
+                  if prune_all or stamp(a['created_at'])<cutoff:delete_artifacts.append(a)
+              return dict(protected=sorted(protected),runs=delete_runs,artifacts=delete_artifacts,kept_artifacts=kept_artifacts)
+          
+          class API:
+              def __init__(self,repo,token):self.base='https://api.github.com/repos/'+repo;self.token=token
+              def request(self,path,method='GET'):
+                  req=urllib.request.Request(self.base+path,method=method,headers={'Authorization':'Bearer '+self.token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'LichAI-Actions-retention'})
+                  for attempt in range(4):
+                      try:
+                          with urllib.request.urlopen(req,timeout=60) as response:
+                              data=response.read();return json.loads(data) if data else None
+                      except urllib.error.HTTPError as e:
+                          if method=='DELETE' and e.code==404:return None
+                          if e.code in (429,500,502,503,504) and attempt<3:time.sleep(2**attempt);continue
+                          raise
+              def listing(self,path,key):
+                  items=[]
+                  for page in range(1,101):
+                      data=self.request(path+'?'+'per_page=100&page='+str(page))
+                      batch=data[key];items.extend(batch)
+                      if len(batch)<100:return items
+                  raise RuntimeError('More than 10000 records: stopped before mutation')
+          
+          def main():
+              repo=os.environ['GITHUB_REPOSITORY'];run_id=int(os.environ['GITHUB_RUN_ID'])
+              dry=os.environ.get('DRY_RUN','true').lower()=='true'
+              prune=os.environ.get('PRUNE_ALL','false').lower()=='true'
+              api=API(repo,os.environ['GH_TOKEN'])
+              runs=api.listing('/actions/runs','workflow_runs');artifacts=api.listing('/actions/artifacts','artifacts')
+              cutoff=datetime.now(timezone.utc)-timedelta(days=7)
+              p=plan(runs,artifacts,run_id,cutoff,prune)
+              removed_ids={r['id'] for r in p['runs']}
+              expected_bytes=sum(a['size_in_bytes'] for a in artifacts if not a.get('expired') and (a.get('workflow_run',{}).get('id') in removed_ids or any(a['id']==d['id'] for d in p['artifacts'])))
+              summary={'repository':repo,'dry_run':dry,'prune_all_duplicates':prune,'before_runs':len(runs),'before_artifacts':sum(not a.get('expired') for a in artifacts),'delete_runs':len(p['runs']),'delete_artifacts_separately':len(p['artifacts']),'expected_artifact_bytes_removed':expected_bytes,'protected_run_ids':p['protected']}
+              print(json.dumps(summary,indent=2))
+              if not dry:
+                  # Re-read records immediately before deletion. Abort if state is unexpected.
+                  for a in p['artifacts']:
+                      api.request('/actions/artifacts/'+str(a['id']),'DELETE')
+                  for r in p['runs']:
+                      live=api.request('/actions/runs/'+str(r['id']))
+                      if live.get('status')!='completed' or r['id'] in p['protected']:raise RuntimeError('Run state changed; stopped')
+                      api.request('/actions/runs/'+str(r['id']),'DELETE')
+                  after_artifacts=api.listing('/actions/artifacts','artifacts')
+                  after_runs=api.listing('/actions/runs','workflow_runs')
+                  remaining_ids={r['id'] for r in after_runs}
+                  if any(r['id'] in remaining_ids for r in p['runs']):raise RuntimeError('Deletion verification failed')
+                  after_ids={a['id'] for a in after_artifacts if not a.get('expired')}
+                  if any(a['id'] not in after_ids for a in p['kept_artifacts']):raise RuntimeError('Protected artifact missing')
+                  summary.update(after_runs=len(after_runs),after_artifacts=len(after_ids),verified=True)
+                  print(json.dumps(summary,indent=2))
+              destination=os.environ.get('GITHUB_STEP_SUMMARY')
+              if destination:
+                  with open(destination,'a') as f:f.write('## Actions storage retention\n\n```json\n'+json.dumps(summary,indent=2)+'\n```\n\nPolicy: retain current runs, latest successful run per workflow, and latest successful artifact set per output type. Delete older duplicates after seven days. Releases and application source are untouched.\n')
+          if __name__=='__main__':main()
+          PYTHON
