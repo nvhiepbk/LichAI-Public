@@ -241,17 +241,6 @@ Lịch AI Studio 1.0.1: Windows EXE và Android APK. Mã nguồn và thông tin 
 
 Do not announce a public release until Windows CI, the downloadable EXE, and the real Word page-pairing acceptance test have passed. The Word release metadata is separate from the Excel translator's assets.
 
-## Lịch AI Launcher Android 1.0.0 · 2026-10-20
-
-# Lịch AI Launcher Android 1.0.0
-
-- Màn hình Home không còn header, ứng dụng yêu thích hay nút drawer dư.
-- Đặt lối tắt, tạo và đổi tên thư mục; kéo icon để ghép thư mục.
-- Thêm widget hệ thống, cấu hình, đổi chiều cao và gỡ.
-- Lưới drawer 3–8 cột hoặc danh sách; tự thu icon vừa ô.
-- Dock trong suốt, ít nhất 5 vị trí và tăng theo số cột drawer.
-- Giữ vùng trống để thêm nội dung hoặc mở cài đặt.
-
 ## Lịch AI Launcher TV 0.2.0 · 2026-10-20
 
 # Lịch AI Launcher TV
@@ -287,5 +276,23 @@ Android: APK arm64 debug thử nghiệm, Android 8+; giữ ứng dụng ở phí
 Mã nguồn GPL-3.0-or-later, FFmpeg/x264 có GPL; corresponding source và thông báo giấy phép đi kèm bundle. Không cloud, tài khoản hoặc quảng cáo.
 
 Đây chưa phải bản đã nghiệm thu trên máy thật. Xem docs/ACCEPTANCE.md: còn kiểm tra Save/Share/quyền truy cập trên Windows/Android arm64 thật và hiệu năng 4K/60fps. Xem thử cần dựng trước, không phát realtime trong editor. Chưa render nền/resume, preflight dung lượng, project bundle portable hoặc khóa ký release ổn định.
+
+## Lịch AI Launcher Android 1.0.1 · 2026-10-20
+
+# Lịch AI Launcher Android 1.0.1
+
+- Tăng phiên bản và versionCode để phát hành bản build riêng, không thay bytes khác dưới phiên bản 1.0.0 đã xuất bản.
+- Ổn định nghiệm thu TV: điều hướng theo focus thực tế và xác nhận menu Cài đặt mở trước khi chọn chức năng.
+- Tách lịch build ký Phone/TV: push chỉ tự ký khi file cấu hình phiên bản của nền tảng đó thay đổi; vẫn có chạy thủ công và kiểm tra khóa trên PR.
+- Giao diện và chức năng Home của Phone giữ như 1.0.0.
+
+# Lịch AI Launcher Android 1.0.0
+
+- Màn hình Home không còn header, ứng dụng yêu thích hay nút drawer dư.
+- Đặt lối tắt, tạo và đổi tên thư mục; kéo icon để ghép thư mục.
+- Thêm widget hệ thống, cấu hình, đổi chiều cao và gỡ.
+- Lưới drawer 3–8 cột hoặc danh sách; tự thu icon vừa ô.
+- Dock trong suốt, ít nhất 5 vị trí và tăng theo số cột drawer.
+- Giữ vùng trống để thêm nội dung hoặc mở cài đặt.
 
 <!-- registry:end -->
