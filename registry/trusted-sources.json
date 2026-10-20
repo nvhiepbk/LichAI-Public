@@ -81,6 +81,19 @@
       ],
       "legacy_key": null,
       "studio_approval": true
+    },
+    "launcher-phone": {
+      "repository": "nvhiepbk/LichAI-Launcher",
+      "manifest_path": "release-manifests/launcher-phone.json",
+      "workflows": [
+        "release-phone.yml"
+      ],
+      "artifact": "launcher-phone-publication",
+      "assets": [
+        "LichAI-Launcher-Android.apk"
+      ],
+      "legacy_key": null,
+      "studio_approval": false
     }
   }
 }
