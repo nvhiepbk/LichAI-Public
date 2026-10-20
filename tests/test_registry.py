@@ -34,11 +34,48 @@ def source_manifest():
 
 
 class RegistryTests(unittest.TestCase):
+    def test_targeted_release_only_discovers_selected_candidates(self):
+        policy = {'applications': {'studio': {'repository': 'studio'}, 'launcher-phone': {'repository': 'launcher'}}}
+        self.assertEqual(r.select_applications(policy), policy['applications'])
+        self.assertEqual(r.select_applications(policy, 'launcher-phone'), {'launcher-phone': policy['applications']['launcher-phone']})
+        with self.assertRaisesRegex(ValueError, 'Unknown application'):
+            r.select_applications(policy, 'untrusted')
+        with self.assertRaisesRegex(ValueError, 'pending transaction'):
+            r.select_applications(policy, 'launcher-phone', {'application': {'id': 'studio'}})
+        self.assertEqual(list(r.select_applications(policy, 'launcher-phone', {'application': {'id': 'launcher-phone'}})), ['launcher-phone'])
+
     def setUp(self):
         self.policy = json.loads((ROOT / 'registry/trusted-sources.json').read_text())
         self.grant = self.policy['applications']['desktop']
         self.run = {'id':1,'run_attempt':1,'run_number':1,'status':'completed','conclusion':'success','repository':{'full_name':self.grant['repository']},
             'head_repository':{'full_name':self.grant['repository']},'path':'.github/workflows/windows-build.yml','head_branch':'main','event':'push','head_sha':'a'*40,'updated_at':'2026-10-19T09:00:00Z'}
+
+    def test_targeted_main_does_not_query_unrelated_studio_candidate(self):
+        grant = self.policy['applications']['launcher-phone']
+        candidate = dict(self.run, repository={'full_name': grant['repository']},
+                         head_repository={'full_name': grant['repository']},
+                         path='.github/workflows/' + grant['workflows'][0])
+        app = manifest('launcher-phone')
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'registry').mkdir()
+            (root / 'registry/trusted-sources.json').write_text(json.dumps(self.policy))
+            (root / 'registry/applications.json').write_text(json.dumps({'schema_version': 1, 'applications': []}))
+            def lookup(path):
+                self.assertIn(grant['repository'], path)
+                self.assertNotIn('LichAI-Studio', path)
+                return {'workflow_runs': [candidate]}
+            with patch.object(r, 'ROOT', root), patch.object(r, 'validate_registry'), \
+                 patch.object(r, 'reconcile', return_value={}), patch.object(r, 'api', side_effect=lookup), \
+                 patch.object(r, 'stage', return_value=(app, root)) as stage, \
+                 patch.object(r, 'publish_group') as publish, \
+                 patch.object(sys, 'argv', ['release_registry.py', '--application', 'launcher-phone']):
+                r.main()
+            self.assertEqual(stage.call_args.args[0], 'launcher-phone')
+            publish.assert_not_called()
+            report = json.loads((root / 'release-report.json').read_text())
+            self.assertEqual([item['id'] for item in report['plan']], ['launcher-phone'])
+            self.assertEqual(report['errors'], [])
 
     def test_migration_schema_and_eight_fixed_names(self):
         data = json.loads((ROOT / 'registry/applications.json').read_text())
@@ -240,3 +277,4 @@ class RegistryTests(unittest.TestCase):
             self.assertFalse((directory/'registry/pending.json').exists())
 
 if __name__ == '__main__':unittest.main()
+

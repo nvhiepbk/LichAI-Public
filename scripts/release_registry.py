@@ -486,10 +486,23 @@ def reconcile(registry, exclude=()):
     return {app['id']: app for app in missing}
 
 
+def select_applications(policy, application=None, pending=None):
+    """Scope candidate discovery without changing trust or asset verification."""
+    grants = policy['applications']
+    if not application:
+        return grants
+    if application not in grants:
+        raise ValueError('Unknown application id: ' + application)
+    if pending and pending['application']['id'] != application:
+        raise ValueError('Recover the pending transaction before publishing another application')
+    return {application: grants[application]}
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--apply', action='store_true')
     parser.add_argument('--audit', action='store_true')
+    parser.add_argument('--application', help='Only discover candidates for this reviewed application id')
     args = parser.parse_args()
     policy = json.loads((ROOT / 'registry/trusted-sources.json').read_text())
     validate_policy(policy)
@@ -498,6 +511,7 @@ def main():
     plan, errors = [], []
     pending_path = ROOT / 'registry/pending.json'
     pending = json.loads(pending_path.read_text()) if pending_path.exists() else None
+    selected = select_applications(policy, args.application, pending)
     repairs = reconcile(registry, exclude={pending['application']['id']} if pending else set())
     if args.audit:
         if repairs or pending:
@@ -508,7 +522,7 @@ def main():
         from download_counts import record
         record(ROOT, list(release_assets().values()), registry)
         commit_state('Sync cumulative application download counts')
-    for aid, grant in policy['applications'].items():
+    for aid, grant in selected.items():
         try:
             old = next((a for a in registry['applications'] if a['id'] == aid), None)
             if pending and pending['application']['id'] != aid:
@@ -569,3 +583,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

@@ -8,6 +8,10 @@ on:
         description: Publish verified installers (requires REGISTRY_ENABLED=true)
         type: boolean
         default: false
+      application:
+        description: Optional reviewed application id; blank checks all applications
+        type: string
+        default: ''
   workflow_call:
     inputs:
       apply:
@@ -51,6 +55,7 @@ jobs:
           GH_TOKEN: ${{ secrets.RELEASE_SYNC_TOKEN || secrets.PUBLIC_ARTIFACTS_TOKEN }}
           ENABLED: ${{ vars.REGISTRY_ENABLED }}
           APPLY: ${{ github.event_name != 'workflow_dispatch' || inputs.apply }}
+          TARGET_APPLICATION: ${{ github.event_name == 'workflow_dispatch' && inputs.application || '' }}
           APKSIGNER: ${{ env.ANDROID_HOME }}/build-tools/36.0.0/apksigner
           AAPT: ${{ env.ANDROID_HOME }}/build-tools/36.0.0/aapt
         run: |
@@ -61,6 +66,7 @@ jobs:
           # checkout's repository-scoped token pushes only Public; GH_TOKEN reads source artifacts.
           flags=()
           if [[ "$ENABLED" == 'true' && "$APPLY" == 'true' ]]; then flags+=(--apply); fi
+          if [[ -n "$TARGET_APPLICATION" ]]; then flags+=(--application "$TARGET_APPLICATION"); fi
           python scripts/release_registry.py "${flags[@]}"
       - name: Save verification report
         if: always()
@@ -75,3 +81,4 @@ jobs:
         if: always()
         run: |
           if test -f release-report.json; then cat release-report.json >> "$GITHUB_STEP_SUMMARY"; fi
+
