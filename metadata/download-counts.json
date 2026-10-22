@@ -40,8 +40,8 @@
     },
     "launcher-phone": {
       "historical": 0,
-      "current": 5,
-      "total": 5
+      "current": 6,
+      "total": 6
     }
   },
   "installers": {
@@ -92,9 +92,9 @@
     },
     "LichAI-Launcher-Android.apk": {
       "historical": 0,
-      "current": 5,
-      "total": 5
+      "current": 6,
+      "total": 6
     }
   },
-  "updated_at": "2026-10-20T19:15:37.397589Z"
+  "updated_at": "2026-10-22T23:29:40.544956Z"
 }
