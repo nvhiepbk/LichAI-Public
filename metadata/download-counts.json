@@ -20,8 +20,8 @@
     },
     "excel-translator": {
       "historical": 2,
-      "current": 3,
-      "total": 5
+      "current": 4,
+      "total": 6
     },
     "word-translator": {
       "historical": 2,
@@ -30,8 +30,8 @@
     },
     "launcher-tv": {
       "historical": 0,
-      "current": 11,
-      "total": 11
+      "current": 13,
+      "total": 13
     },
     "studio": {
       "historical": 11,
@@ -67,8 +67,8 @@
     },
     "LichAI-Excel-Translater.exe": {
       "historical": 2,
-      "current": 3,
-      "total": 5
+      "current": 4,
+      "total": 6
     },
     "LichAI-Word-Translator.exe": {
       "historical": 2,
@@ -77,8 +77,8 @@
     },
     "LichAI-Launcher-TV.apk": {
       "historical": 0,
-      "current": 11,
-      "total": 11
+      "current": 13,
+      "total": 13
     },
     "LichAI-Studio-Windows.exe": {
       "historical": 5,
@@ -96,5 +96,5 @@
       "total": 6
     }
   },
-  "updated_at": "2026-10-23T01:49:52.760424Z"
+  "updated_at": "2026-10-23T12:23:33.294302Z"
 }
