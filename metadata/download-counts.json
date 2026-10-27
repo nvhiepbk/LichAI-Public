@@ -10,8 +10,8 @@
     },
     "tv": {
       "historical": 2,
-      "current": 3,
-      "total": 5
+      "current": 4,
+      "total": 6
     },
     "desktop": {
       "historical": 5,
@@ -52,8 +52,8 @@
     },
     "LichAI.TV.apk": {
       "historical": 2,
-      "current": 3,
-      "total": 5
+      "current": 4,
+      "total": 6
     },
     "LichAI.Desktop.exe": {
       "historical": 3,
@@ -96,5 +96,5 @@
       "total": 6
     }
   },
-  "updated_at": "2026-10-26T19:43:20.007663Z"
+  "updated_at": "2026-10-27T08:10:55.993982Z"
 }
