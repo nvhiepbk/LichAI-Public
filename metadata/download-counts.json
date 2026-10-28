@@ -30,8 +30,8 @@
     },
     "launcher-tv": {
       "historical": 0,
-      "current": 19,
-      "total": 19
+      "current": 20,
+      "total": 20
     },
     "studio": {
       "historical": 11,
@@ -77,8 +77,8 @@
     },
     "LichAI-Launcher-TV.apk": {
       "historical": 0,
-      "current": 19,
-      "total": 19
+      "current": 20,
+      "total": 20
     },
     "LichAI-Studio-Windows.exe": {
       "historical": 5,
@@ -96,5 +96,5 @@
       "total": 6
     }
   },
-  "updated_at": "2026-10-27T14:31:02.811715Z"
+  "updated_at": "2026-10-28T08:51:04.107002Z"
 }
