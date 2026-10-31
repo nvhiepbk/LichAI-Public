@@ -10,8 +10,8 @@
     },
     "tv": {
       "historical": 2,
-      "current": 11,
-      "total": 13
+      "current": 12,
+      "total": 14
     },
     "desktop": {
       "historical": 5,
@@ -30,8 +30,8 @@
     },
     "launcher-tv": {
       "historical": 0,
-      "current": 24,
-      "total": 24
+      "current": 25,
+      "total": 25
     },
     "studio": {
       "historical": 11,
@@ -52,8 +52,8 @@
     },
     "LichAI.TV.apk": {
       "historical": 2,
-      "current": 11,
-      "total": 13
+      "current": 12,
+      "total": 14
     },
     "LichAI.Desktop.exe": {
       "historical": 3,
@@ -77,8 +77,8 @@
     },
     "LichAI-Launcher-TV.apk": {
       "historical": 0,
-      "current": 24,
-      "total": 24
+      "current": 25,
+      "total": 25
     },
     "LichAI-Studio-Windows.exe": {
       "historical": 5,
@@ -96,5 +96,5 @@
       "total": 7
     }
   },
-  "updated_at": "2026-10-31T15:52:45.650701Z"
+  "updated_at": "2026-10-31T19:41:53.507815Z"
 }
