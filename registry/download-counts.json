@@ -45,32 +45,32 @@
     {
       "asset_id": 656203118,
       "name": "LichAI.Android.apk",
-      "download_count": 1
+      "download_count": 2
     },
     {
       "asset_id": 656203460,
       "name": "LichAI.TV.apk",
-      "download_count": 9
+      "download_count": 10
     },
     {
       "asset_id": 656203828,
       "name": "LichAI.Desktop.exe",
-      "download_count": 3
+      "download_count": 4
     },
     {
       "asset_id": 656203893,
       "name": "LichAI.Desktop.msi",
-      "download_count": 1
+      "download_count": 2
     },
     {
       "asset_id": 656204286,
       "name": "LichAI-Excel-Translater.exe",
-      "download_count": 4
+      "download_count": 5
     },
     {
       "asset_id": 656204733,
       "name": "LichAI-Word-Translator.exe",
-      "download_count": 2
+      "download_count": 3
     },
     {
       "asset_id": 656205406,
@@ -90,22 +90,22 @@
     {
       "asset_id": 659155343,
       "name": "LichAI-Launcher-TV.apk",
-      "download_count": 23
+      "download_count": 24
     },
     {
       "asset_id": 659254274,
       "name": "LichAI-Studio-Windows.exe",
-      "download_count": 1
+      "download_count": 2
     },
     {
       "asset_id": 659254412,
       "name": "LichAI-Studio-Android.apk",
-      "download_count": 5
+      "download_count": 6
     },
     {
       "asset_id": 659296596,
       "name": "LichAI-Launcher-Android.apk",
-      "download_count": 6
+      "download_count": 7
     }
   ]
 }

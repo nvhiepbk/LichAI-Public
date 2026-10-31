@@ -5,96 +5,96 @@
   "applications": {
     "android": {
       "historical": 2,
-      "current": 1,
-      "total": 3
-    },
-    "tv": {
-      "historical": 2,
-      "current": 9,
-      "total": 11
-    },
-    "desktop": {
-      "historical": 5,
-      "current": 4,
-      "total": 9
-    },
-    "excel-translator": {
-      "historical": 2,
-      "current": 4,
-      "total": 6
-    },
-    "word-translator": {
-      "historical": 2,
       "current": 2,
       "total": 4
     },
+    "tv": {
+      "historical": 2,
+      "current": 10,
+      "total": 12
+    },
+    "desktop": {
+      "historical": 5,
+      "current": 6,
+      "total": 11
+    },
+    "excel-translator": {
+      "historical": 2,
+      "current": 5,
+      "total": 7
+    },
+    "word-translator": {
+      "historical": 2,
+      "current": 3,
+      "total": 5
+    },
     "launcher-tv": {
       "historical": 0,
-      "current": 23,
-      "total": 23
+      "current": 24,
+      "total": 24
     },
     "studio": {
       "historical": 11,
-      "current": 6,
-      "total": 17
+      "current": 8,
+      "total": 19
     },
     "launcher-phone": {
       "historical": 0,
-      "current": 6,
-      "total": 6
+      "current": 7,
+      "total": 7
     }
   },
   "installers": {
     "LichAI.Android.apk": {
       "historical": 2,
-      "current": 1,
-      "total": 3
+      "current": 2,
+      "total": 4
     },
     "LichAI.TV.apk": {
       "historical": 2,
-      "current": 9,
-      "total": 11
+      "current": 10,
+      "total": 12
     },
     "LichAI.Desktop.exe": {
       "historical": 3,
-      "current": 3,
-      "total": 6
+      "current": 4,
+      "total": 7
     },
     "LichAI.Desktop.msi": {
-      "historical": 2,
-      "current": 1,
-      "total": 3
-    },
-    "LichAI-Excel-Translater.exe": {
-      "historical": 2,
-      "current": 4,
-      "total": 6
-    },
-    "LichAI-Word-Translator.exe": {
       "historical": 2,
       "current": 2,
       "total": 4
     },
+    "LichAI-Excel-Translater.exe": {
+      "historical": 2,
+      "current": 5,
+      "total": 7
+    },
+    "LichAI-Word-Translator.exe": {
+      "historical": 2,
+      "current": 3,
+      "total": 5
+    },
     "LichAI-Launcher-TV.apk": {
       "historical": 0,
-      "current": 23,
-      "total": 23
+      "current": 24,
+      "total": 24
     },
     "LichAI-Studio-Windows.exe": {
       "historical": 5,
-      "current": 1,
-      "total": 6
+      "current": 2,
+      "total": 7
     },
     "LichAI-Studio-Android.apk": {
       "historical": 6,
-      "current": 5,
-      "total": 11
+      "current": 6,
+      "total": 12
     },
     "LichAI-Launcher-Android.apk": {
       "historical": 0,
-      "current": 6,
-      "total": 6
+      "current": 7,
+      "total": 7
     }
   },
-  "updated_at": "2026-10-30T20:22:38.821810Z"
+  "updated_at": "2026-10-31T04:23:03.116639Z"
 }
