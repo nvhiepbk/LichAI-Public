@@ -5,8 +5,8 @@
   "applications": {
     "android": {
       "historical": 2,
-      "current": 2,
-      "total": 4
+      "current": 3,
+      "total": 5
     },
     "tv": {
       "historical": 2,
@@ -35,20 +35,20 @@
     },
     "studio": {
       "historical": 11,
-      "current": 8,
-      "total": 19
+      "current": 9,
+      "total": 20
     },
     "launcher-phone": {
       "historical": 0,
-      "current": 7,
-      "total": 7
+      "current": 9,
+      "total": 9
     }
   },
   "installers": {
     "LichAI.Android.apk": {
       "historical": 2,
-      "current": 2,
-      "total": 4
+      "current": 3,
+      "total": 5
     },
     "LichAI.TV.apk": {
       "historical": 2,
@@ -87,14 +87,14 @@
     },
     "LichAI-Studio-Android.apk": {
       "historical": 6,
-      "current": 6,
-      "total": 12
+      "current": 7,
+      "total": 13
     },
     "LichAI-Launcher-Android.apk": {
       "historical": 0,
-      "current": 7,
-      "total": 7
+      "current": 9,
+      "total": 9
     }
   },
-  "updated_at": "2026-11-10T09:11:03.806522Z"
+  "updated_at": "2026-11-11T09:22:57.501048Z"
 }
