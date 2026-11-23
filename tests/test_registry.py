@@ -77,6 +77,26 @@ class RegistryTests(unittest.TestCase):
             self.assertEqual([item['id'] for item in report['plan']], ['launcher-phone'])
             self.assertEqual(report['errors'], [])
 
+    def test_workflow_only_builds_do_not_become_release_candidates(self):
+        repository = self.grant['repository']
+        old_sha, new_sha = 'a' * 40, 'b' * 40
+        with patch.object(r, 'api', return_value={
+            'status': 'ahead', 'too_large': False,
+            'files': [{'filename': '.github/workflows/actions-storage-cleanup.yml'}],
+        }):
+            self.assertTrue(r.only_workflow_changes(repository, old_sha, new_sha))
+        with patch.object(r, 'api', return_value={
+            'status': 'ahead', 'too_large': False,
+            'files': [{'filename': 'app/src/main/AndroidManifest.xml'}],
+        }):
+            self.assertFalse(r.only_workflow_changes(repository, old_sha, new_sha))
+        with patch.object(r, 'api', return_value={
+            'status': 'ahead', 'too_large': True,
+            'files': [{'filename': '.github/workflows/actions-storage-cleanup.yml'}],
+        }):
+            self.assertFalse(r.only_workflow_changes(repository, old_sha, new_sha))
+        self.assertTrue(r.only_workflow_changes(repository, old_sha, old_sha))
+
     def test_migration_preserves_eight_fixed_names_and_allows_trusted_additions(self):
         data = json.loads((ROOT / 'registry/applications.json').read_text())
         r.validate_registry(data)
