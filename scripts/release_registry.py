@@ -498,6 +498,24 @@ def select_applications(policy, application=None, pending=None):
     return {application: grants[application]}
 
 
+
+def only_workflow_changes(repository, base_sha, head_sha):
+    """Ignore successful builds caused only by workflow edits or exact-source reruns."""
+    if base_sha == head_sha:
+        return True
+    comparison = api(f'repos/{repository}/compare/{base_sha}...{head_sha}')
+    if comparison.get('status') == 'identical':
+        return True
+    # The compare endpoint can truncate large diffs. In that case fail closed:
+    # keep the candidate so the existing version/hash guard remains authoritative.
+    if comparison.get('status') != 'ahead' or comparison.get('too_large'):
+        return False
+    files = comparison.get('files') or []
+    if not files or len(files) >= 300:
+        return False
+    return all(str(item.get('filename', '')).startswith('.github/workflows/') for item in files)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--apply', action='store_true')
@@ -553,6 +571,10 @@ def main():
                     continue
                 run = max(runs, key=lambda r: r['run_number']) if len(grant['workflows']) == 1 else max(runs, key=lambda r: r['created_at'])
                 if old and old.get('provenance', {}).get('run_id') == run['id']:
+                    continue
+                if old and only_workflow_changes(
+                    grant['repository'], old.get('provenance', {}).get('head_sha', ''), run['head_sha']
+                ):
                     continue
             with tempfile.TemporaryDirectory() as directory:
                 new, folder = stage(aid, grant, run, Path(directory))
